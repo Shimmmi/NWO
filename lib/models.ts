@@ -72,7 +72,20 @@ export async function findUsersByIds(userIds: string[]): Promise<UserRecord[]> {
 
 export async function updateUserStats(
   userId: string,
-  updates: Partial<Pick<UserRecord, "rating" | "wins" | "losses" | "xp" | "level">>
+  updates: Partial<
+    Pick<
+      UserRecord,
+      | "rating"
+      | "wins"
+      | "losses"
+      | "xp"
+      | "level"
+      | "credits"
+      | "legendaryPity"
+      | "starterGranted"
+      | "lastDailyGrantAt"
+    >
+  >,
 ): Promise<void> {
   const parts: string[] = ["updatedAt = :updatedAt"];
   const values: Record<string, unknown> = {
@@ -374,6 +387,17 @@ const memoryUsers = new Map<string, UserRecord>();
 const memoryDecks = new Map<string, DeckRecord>();
 const memoryFriends = new Map<string, FriendRecord>();
 
+export function updateMemoryUser(
+  userId: string,
+  updates: Partial<UserRecord>,
+): UserRecord | null {
+  const prev = memoryUsers.get(userId);
+  if (!prev) return null;
+  const next = { ...prev, ...updates, updatedAt: new Date().toISOString() };
+  memoryUsers.set(userId, next);
+  return next;
+}
+
 const edgeKey = (userId: string, friendId: string) => `${userId}#${friendId}`;
 
 export async function createUserSafe(user: UserRecord): Promise<UserRecord> {
@@ -398,7 +422,7 @@ export async function findUserByEmailSafe(email: string): Promise<UserRecord | n
 
 export async function findUserByIdSafe(userId: string): Promise<UserRecord | null> {
   try {
-    return await findUserById(userId);
+    return (await findUserById(userId)) ?? memoryUsers.get(userId) ?? null;
   } catch {
     return memoryUsers.get(userId) ?? null;
   }

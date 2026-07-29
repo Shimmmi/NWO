@@ -11,6 +11,14 @@ export interface UserRecord {
   losses: number;
   level: number;
   xp: number;
+  /** Soft currency — единственная валюта магазина. */
+  credits: number;
+  /** Packs opened since last legendary (elite slot). */
+  legendaryPity: number;
+  /** Starter kit already granted. */
+  starterGranted?: boolean;
+  /** ISO date YYYY-MM-DD of last daily credit grant. */
+  lastDailyGrantAt?: string;
   createdAt: string;
   updatedAt: string;
 }
@@ -54,6 +62,42 @@ export interface FriendRecord {
   updatedAt: string;
 }
 
+/** PK userId, SK cardId */
+export interface CollectionItem {
+  userId: string;
+  cardId: string;
+  count: number;
+  firstObtainedAt: string;
+  updatedAt: string;
+}
+
+/** Unopened packs — PK userId, SK packInstanceId */
+export interface PackInventoryItem {
+  userId: string;
+  packInstanceId: string;
+  skuId: string;
+  source: "purchase" | "level_up" | "starter" | "admin";
+  createdAt: string;
+}
+
+export type EconomyLedgerKind =
+  | "match_reward"
+  | "level_up"
+  | "daily_grant"
+  | "pack_purchase"
+  | "pack_open"
+  | "craft"
+  | "starter";
+
+export interface EconomyLedgerEntry {
+  userId: string;
+  entryId: string;
+  kind: EconomyLedgerKind;
+  deltaCredits?: number;
+  meta?: Record<string, unknown>;
+  createdAt: string;
+}
+
 export interface UserPublic {
   userId: string;
   nickname: string;
@@ -63,19 +107,32 @@ export interface UserPublic {
   losses: number;
   level: number;
   xp: number;
+  credits: number;
   isGuest: boolean;
 }
 
-export function toUserPublic(user: UserRecord): UserPublic {
+/** Normalize legacy users missing economy fields. */
+export function normalizeUser(user: UserRecord): UserRecord {
   return {
-    userId: user.userId,
-    nickname: user.nickname,
-    email: user.email,
-    rating: user.rating,
-    wins: user.wins,
-    losses: user.losses,
-    level: user.level,
-    xp: user.xp,
-    isGuest: user.isGuest,
+    ...user,
+    credits: user.credits ?? 0,
+    legendaryPity: user.legendaryPity ?? 0,
+    starterGranted: user.starterGranted ?? false,
+  };
+}
+
+export function toUserPublic(user: UserRecord): UserPublic {
+  const n = normalizeUser(user);
+  return {
+    userId: n.userId,
+    nickname: n.nickname,
+    email: n.email,
+    rating: n.rating,
+    wins: n.wins,
+    losses: n.losses,
+    level: n.level,
+    xp: n.xp,
+    credits: n.credits,
+    isGuest: n.isGuest,
   };
 }

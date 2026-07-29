@@ -1,0 +1,11 @@
+export const ECONOMY = {
+  STARTING_CREDITS: 800,
+  MATCH_WIN_CREDITS: 40,
+  MATCH_LOSS_CREDITS: 15,
+  MATCH_WIN_XP: 80,
+  MATCH_LOSS_XP: 30,
+  XP_PER_LEVEL: 200,
+  LEVEL_UP_CREDITS: 100,
+  LEVEL_UP_FREE_PACK_SKU: "booster-mix-standard" as const,
+  DAILY_GRANT_CREDITS: 50,
+} as const;

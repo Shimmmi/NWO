@@ -6,8 +6,11 @@ import {
   SESSION_COOKIE,
   sessionCookieOptions,
 } from "@/lib/auth";
-import { createUserSafe, findUserByEmailSafe } from "@/lib/models";
+import { createUserSafe, findUserByEmailSafe, findUserByIdSafe } from "@/lib/models";
 import { toUserPublic, type UserRecord } from "@/lib/schema";
+import { ECONOMY } from "@/lib/shop/economy";
+import { grantStarterKit } from "@/lib/shop/models";
+import { economyDefaults } from "@/lib/shop/userDefaults";
 import { registerSchema } from "@/lib/validation";
 
 export async function POST(request: Request) {
@@ -45,11 +48,19 @@ export async function POST(request: Request) {
     losses: 0,
     level: 1,
     xp: 0,
+    ...economyDefaults(),
     createdAt: now,
     updatedAt: now,
   };
 
   await createUserSafe(user);
+  await grantStarterKit(user.userId);
+  const fresh =
+    (await findUserByIdSafe(user.userId)) ?? {
+      ...user,
+      starterGranted: true,
+      credits: ECONOMY.STARTING_CREDITS,
+    };
 
   const token = createSession({
     userId: user.userId,
@@ -58,7 +69,7 @@ export async function POST(request: Request) {
   });
 
   const response = NextResponse.json(
-    { user: toUserPublic(user) },
+    { user: toUserPublic(fresh) },
     { status: 201 },
   );
   response.cookies.set(SESSION_COOKIE, token, sessionCookieOptions());

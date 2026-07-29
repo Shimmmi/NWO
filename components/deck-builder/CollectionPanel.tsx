@@ -1,8 +1,10 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
+import Link from "next/link";
 import { FilterBar } from "@/components/deck-builder/FilterBar";
 import { CollectionGrid } from "@/components/deck-builder/CollectionGrid";
+import { CraftPanel } from "@/components/shop/CraftPanel";
 import { COLORS, TYPOGRAPHY } from "@/lib/design/tokens";
 import { getAllCharacters } from "@/lib/data";
 import {
@@ -10,6 +12,7 @@ import {
   getCharacterCards,
 } from "@/lib/game/deckHelpers";
 import { useDeckBuilderStore } from "@/lib/stores/deckBuilderStore";
+import { useCollectionStore } from "@/lib/stores/collectionStore";
 import { useDebounce } from "@/hooks/useDebounce";
 
 function CharacterSelectPrompt() {
@@ -64,6 +67,36 @@ function CharacterSelectPrompt() {
   );
 }
 
+function EmptyOwnedState() {
+  return (
+    <div
+      style={{
+        padding: 40,
+        textAlign: "center",
+        color: COLORS.text_secondary,
+        font: `400 14px ${TYPOGRAPHY.ui}`,
+      }}
+    >
+      <p>В коллекции пока нет карт этого лидера</p>
+      <Link
+        href="/shop"
+        style={{
+          display: "inline-block",
+          marginTop: 14,
+          color: COLORS.bg_void,
+          background: `linear-gradient(135deg, ${COLORS.gold}, ${COLORS.gold_glow})`,
+          padding: "10px 18px",
+          borderRadius: 8,
+          font: `700 13px ${TYPOGRAPHY.ui}`,
+          textDecoration: "none",
+        }}
+      >
+        Открыть магазин
+      </Link>
+    </div>
+  );
+}
+
 function EmptyFilterResult({ onReset }: { onReset: () => void }) {
   return (
     <div
@@ -102,8 +135,18 @@ export function CollectionPanel() {
   const setSortBy = useDeckBuilderStore((s) => s.setSortBy);
   const resetFilters = useDeckBuilderStore((s) => s.resetFilters);
 
+  const ownedCounts = useCollectionStore((s) => s.ownedCounts);
+  const recentNew = useCollectionStore((s) => s.recentNew);
+  const loadCollection = useCollectionStore((s) => s.load);
+  const ownedLoaded = useCollectionStore((s) => s.loaded);
+  const [tab, setTab] = useState<"cards" | "craft">("cards");
+
   const [inputSearch, setInputSearch] = useState("");
   const debouncedSearch = useDebounce(inputSearch, 80);
+
+  useEffect(() => {
+    void loadCollection();
+  }, [loadCollection]);
 
   useEffect(() => {
     setFilter("search", debouncedSearch);
@@ -115,8 +158,16 @@ export function CollectionPanel() {
   );
 
   const filteredCards = useMemo(
-    () => filterAndSortCards(allCards, filters, sortBy, entries),
-    [allCards, filters, sortBy, entries],
+    () =>
+      filterAndSortCards(
+        allCards,
+        filters,
+        sortBy,
+        entries,
+        ownedLoaded ? ownedCounts : undefined,
+        recentNew,
+      ),
+    [allCards, filters, sortBy, entries, ownedCounts, ownedLoaded, recentNew],
   );
 
   return (
@@ -129,35 +180,74 @@ export function CollectionPanel() {
         borderRight: "1px solid rgba(255,255,255,0.06)",
       }}
     >
-      <FilterBar
-        filters={filters}
-        sortBy={sortBy}
-        searchValue={inputSearch}
-        onSearchChange={setInputSearch}
-        onFilterChange={setFilter}
-        onSortChange={setSortBy}
-        onReset={resetFilters}
-        totalShown={filteredCards.length}
-        totalAvailable={allCards.length}
-      />
-
-      <div
-        style={{
-          flex: 1,
-          overflowY: "auto",
-          padding: "12px 16px",
-          scrollbarWidth: "thin",
-          scrollbarColor: `${COLORS.gold}44 transparent`,
-        }}
-      >
-        {characterId === null ? (
-          <CharacterSelectPrompt />
-        ) : filteredCards.length === 0 ? (
-          <EmptyFilterResult onReset={resetFilters} />
-        ) : (
-          <CollectionGrid cards={filteredCards} />
-        )}
+      <div style={{ display: "flex", gap: 0, borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
+        {(["cards", "craft"] as const).map((t) => (
+          <button
+            key={t}
+            type="button"
+            onClick={() => setTab(t)}
+            style={{
+              flex: 1,
+              padding: "10px 0",
+              background: "transparent",
+              border: "none",
+              borderBottom:
+                tab === t ? `2px solid ${COLORS.gold}` : "2px solid transparent",
+              color: tab === t ? COLORS.gold : COLORS.text_secondary,
+              font: `600 13px ${TYPOGRAPHY.ui}`,
+              cursor: "pointer",
+              textTransform: "uppercase",
+              letterSpacing: "0.08em",
+            }}
+          >
+            {t === "cards" ? "Коллекция" : "Крафт"}
+          </button>
+        ))}
       </div>
+
+      {tab === "craft" ? (
+        <CraftPanel characterId={characterId} />
+      ) : (
+        <>
+          <FilterBar
+            filters={filters}
+            sortBy={sortBy}
+            searchValue={inputSearch}
+            onSearchChange={setInputSearch}
+            onFilterChange={setFilter}
+            onSortChange={setSortBy}
+            onReset={resetFilters}
+            totalShown={filteredCards.length}
+            totalAvailable={
+              ownedLoaded
+                ? allCards.filter((c) => (ownedCounts[c.id] ?? 0) > 0).length
+                : allCards.length
+            }
+          />
+
+          <div
+            style={{
+              flex: 1,
+              overflowY: "auto",
+              padding: "12px 16px",
+              scrollbarWidth: "thin",
+              scrollbarColor: `${COLORS.gold}44 transparent`,
+            }}
+          >
+            {characterId === null ? (
+              <CharacterSelectPrompt />
+            ) : filteredCards.length === 0 ? (
+              ownedLoaded ? (
+                <EmptyOwnedState />
+              ) : (
+                <EmptyFilterResult onReset={resetFilters} />
+              )
+            ) : (
+              <CollectionGrid cards={filteredCards} />
+            )}
+          </div>
+        </>
+      )}
     </div>
   );
 }

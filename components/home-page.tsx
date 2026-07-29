@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { BookOpen, Layers, Swords } from "lucide-react";
+import { BookOpen, Layers, ShoppingBag, Swords } from "lucide-react";
 import { UserMenu } from "@/components/user-menu";
 import { Button } from "@/components/ui/button";
 import {
@@ -16,6 +16,12 @@ const sections = [
     title: "Играть",
     description: "Сражайтесь с ИИ или другими игроками в карточном поединке.",
     icon: Swords,
+  },
+  {
+    href: "/shop",
+    title: "Магазин",
+    description: "Покупайте бустеры за credits и открывайте карты.",
+    icon: ShoppingBag,
   },
   {
     href: "/characters",
@@ -59,7 +65,7 @@ export function HomePage() {
           </div>
         </section>
 
-        <section className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <section className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {sections.map(({ href, title, description, icon: Icon }) => (
             <Link key={href} href={href} className="group block">
               <Card className="h-full transition-colors group-hover:border-zinc-600">

@@ -2,7 +2,15 @@ import { BALANCE } from "@/lib/game/balance";
 import { eloDelta } from "@/lib/game/rating";
 import type { Match, MatchStatus } from "@/lib/game/types";
 import { passAbilityPhase, passTurn } from "@/lib/game/engine";
-import { findUserByIdSafe, updateMatchRecordSafe, updateUserStats } from "@/lib/models";
+import {
+  findUserByIdSafe,
+  updateMatchRecordSafe,
+  updateUserStats,
+} from "@/lib/models";
+import { normalizeUser } from "@/lib/schema";
+import { ECONOMY } from "@/lib/shop/economy";
+import { applyXp, computeMatchRewards } from "@/lib/shop/matchRewards";
+import { grantPack, writeLedger } from "@/lib/shop/models";
 import { log, logError, warn } from "@/lib/net/log";
 import type {
   FinishReason,
@@ -464,12 +472,52 @@ async function settlePlayer(
   const delta = eloDelta(myRating, oppRating, won, games);
   const rating = Math.max(0, myRating + delta);
 
+  const rewards = computeMatchRewards(won);
+  const baseUser = user
+    ? normalizeUser(user)
+    : normalizeUser({
+        userId: me.id,
+        email: "",
+        nickname: "",
+        passwordHash: "",
+        isGuest: false,
+        rating: myRating,
+        wins: 0,
+        losses: 0,
+        level: 1,
+        xp: 0,
+        credits: 0,
+        legendaryPity: 0,
+        createdAt: "",
+        updatedAt: "",
+      });
+
+  const { user: afterXp, levelsGained } = applyXp(baseUser, rewards.xp);
+  const credits =
+    (afterXp.credits ?? 0) +
+    rewards.credits +
+    levelsGained * ECONOMY.LEVEL_UP_CREDITS;
+
   try {
     await updateUserStats(me.id, {
       rating,
       wins: (user?.wins ?? 0) + (won ? 1 : 0),
       losses: (user?.losses ?? 0) + (won ? 0 : 1),
+      xp: afterXp.xp,
+      level: afterXp.level,
+      credits,
     });
+    await writeLedger(me.id, "match_reward", rewards.credits, {
+      matchId: match.id,
+      won,
+      xp: rewards.xp,
+    });
+    for (let i = 0; i < levelsGained; i++) {
+      await grantPack(me.id, ECONOMY.LEVEL_UP_FREE_PACK_SKU, "level_up");
+      await writeLedger(me.id, "level_up", ECONOMY.LEVEL_UP_CREDITS, {
+        level: afterXp.level - levelsGained + i + 1,
+      });
+    }
   } catch (err) {
     // Без базы матч всё равно должен корректно завершиться для игроков.
     logError("match-hub", err);

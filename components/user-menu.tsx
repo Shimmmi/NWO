@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useState } from "react";
 import Link from "next/link";
-import { LogOut, User } from "lucide-react";
+import { LogOut, ShoppingBag, User } from "lucide-react";
 import { toast } from "sonner";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
@@ -98,6 +98,12 @@ export function UserMenu() {
           <Link href="/profile" className="cursor-pointer">
             <User />
             Профиль
+          </Link>
+        </DropdownMenuItem>
+        <DropdownMenuItem asChild>
+          <Link href="/shop" className="cursor-pointer">
+            <ShoppingBag />
+            Магазин
           </Link>
         </DropdownMenuItem>
         <DropdownMenuSeparator />

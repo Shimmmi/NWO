@@ -17,6 +17,7 @@ import type {
 import { entriesToCardIds, validateDeck } from "@/lib/game/deckValidator";
 import type { AbilityCard } from "@/lib/game/types";
 import type { DeckRecord } from "@/lib/schema";
+import { useCollectionStore } from "@/lib/stores/collectionStore";
 
 const DEFAULT_FILTERS: DeckFilters = {
   search: "",
@@ -83,6 +84,22 @@ export const useDeckBuilderStore = create<DeckBuilderStore>()(
         0,
       );
 
+      const collection = useCollectionStore.getState();
+      const ownedLoaded = collection.loaded;
+      const owned = collection.getOwned(card.id);
+      if (ownedLoaded && owned <= 0) {
+        return { success: false, reason: "Карта не получена — откройте бустер" };
+      }
+      if (ownedLoaded) {
+        const capped = Math.min(maxCopies, owned);
+        if (currentCount >= capped) {
+          return {
+            success: false,
+            reason: `Доступно только ${owned} копий в коллекции`,
+          };
+        }
+      }
+
       if (totalCards >= DECK_RULES.MAX_CARDS) {
         return {
           success: false,
@@ -146,10 +163,13 @@ export const useDeckBuilderStore = create<DeckBuilderStore>()(
       const state = get();
       const count = state.getCardCountInDeck(card.id);
       const total = state.currentDeck.entries.reduce((s, e) => s + e.count, 0);
-      return (
-        count < DECK_RULES.MAX_COPIES[card.rarity] &&
-        total < DECK_RULES.MAX_CARDS
-      );
+      const collection = useCollectionStore.getState();
+      const ownedLoaded = collection.loaded;
+      const owned = collection.getOwned(card.id);
+      const max = ownedLoaded
+        ? Math.min(DECK_RULES.MAX_COPIES[card.rarity], owned)
+        : DECK_RULES.MAX_COPIES[card.rarity];
+      return count < max && total < DECK_RULES.MAX_CARDS && (!ownedLoaded || owned > 0);
     },
 
     getValidation: () => {

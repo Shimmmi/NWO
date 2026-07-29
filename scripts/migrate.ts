@@ -93,6 +93,42 @@ const tables = [
       { AttributeName: "friendId", KeyType: "RANGE" as const },
     ],
   },
+  {
+    TableName: TABLE.COLLECTION,
+    BillingMode: "PAY_PER_REQUEST" as const,
+    AttributeDefinitions: [
+      { AttributeName: "userId", AttributeType: "S" as const },
+      { AttributeName: "cardId", AttributeType: "S" as const },
+    ],
+    KeySchema: [
+      { AttributeName: "userId", KeyType: "HASH" as const },
+      { AttributeName: "cardId", KeyType: "RANGE" as const },
+    ],
+  },
+  {
+    TableName: TABLE.PACKS,
+    BillingMode: "PAY_PER_REQUEST" as const,
+    AttributeDefinitions: [
+      { AttributeName: "userId", AttributeType: "S" as const },
+      { AttributeName: "packInstanceId", AttributeType: "S" as const },
+    ],
+    KeySchema: [
+      { AttributeName: "userId", KeyType: "HASH" as const },
+      { AttributeName: "packInstanceId", KeyType: "RANGE" as const },
+    ],
+  },
+  {
+    TableName: TABLE.LEDGER,
+    BillingMode: "PAY_PER_REQUEST" as const,
+    AttributeDefinitions: [
+      { AttributeName: "userId", AttributeType: "S" as const },
+      { AttributeName: "entryId", AttributeType: "S" as const },
+    ],
+    KeySchema: [
+      { AttributeName: "userId", KeyType: "HASH" as const },
+      { AttributeName: "entryId", KeyType: "RANGE" as const },
+    ],
+  },
 ];
 
 /**

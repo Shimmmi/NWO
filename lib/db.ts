@@ -29,4 +29,7 @@ export const TABLE = {
   MATCHES: "world-order-matches",
   DECKS: "world-order-decks",
   FRIENDS: "world-order-friends",
+  COLLECTION: "world-order-collection",
+  PACKS: "world-order-packs",
+  LEDGER: "world-order-economy-ledger",
 } as const;

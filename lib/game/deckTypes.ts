@@ -77,6 +77,8 @@ export type FilteredCard = {
   countInDeck: number;
   maxCopies: number;
   canAdd: boolean;
+  ownedCount: number;
+  isNew?: boolean;
 };
 
 export type CostGroup = {

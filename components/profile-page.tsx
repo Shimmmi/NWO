@@ -118,6 +118,9 @@ export function ProfilePage() {
                   <span className="rounded-full bg-zinc-800 px-3 py-1 text-xs">
                     {user.xp} XP
                   </span>
+                  <span className="rounded-full bg-zinc-800 px-3 py-1 text-xs text-amber-400">
+                    {user.credits ?? 0} credits
+                  </span>
                   {user.isGuest && (
                     <span className="rounded-full bg-zinc-800 px-3 py-1 text-xs text-zinc-400">
                       Гостевой аккаунт

@@ -39,18 +39,40 @@ export function filterAndSortCards(
   filters: DeckFilters,
   sortBy: DeckSortOption,
   entries: DeckEntry[],
+  ownedCounts?: Map<string, number> | Record<string, number>,
+  recentNew?: Set<string>,
 ): FilteredCard[] {
   const countMap = new Map(entries.map((e) => [e.card.id, e.count]));
   const total = entries.reduce((s, e) => s + e.count, 0);
   const search = filters.search.trim().toLowerCase();
+  const getOwned = (id: string) => {
+    if (!ownedCounts) return Infinity; // legacy unlock-all if not loaded
+    if (ownedCounts instanceof Map) return ownedCounts.get(id) ?? 0;
+    return ownedCounts[id] ?? 0;
+  };
 
   let result: FilteredCard[] = allCards.map((card) => {
     const countInDeck = countMap.get(card.id) ?? 0;
-    const maxCopies = DECK_RULES.MAX_COPIES[card.rarity];
+    const ownedCount = getOwned(card.id);
+    const maxCopies = Math.min(DECK_RULES.MAX_COPIES[card.rarity], ownedCount);
     const canAdd =
-      countInDeck < maxCopies && total < DECK_RULES.MAX_CARDS;
-    return { card, countInDeck, maxCopies, canAdd };
+      ownedCount > 0 &&
+      countInDeck < maxCopies &&
+      total < DECK_RULES.MAX_CARDS;
+    return {
+      card,
+      countInDeck,
+      maxCopies: DECK_RULES.MAX_COPIES[card.rarity],
+      canAdd,
+      ownedCount: ownedCount === Infinity ? DECK_RULES.MAX_COPIES[card.rarity] : ownedCount,
+      isNew: recentNew?.has(card.id),
+    };
   });
+
+  // Owned-only when ownership map provided
+  if (ownedCounts) {
+    result = result.filter((f) => f.ownedCount > 0);
+  }
 
   if (search) {
     result = result.filter(

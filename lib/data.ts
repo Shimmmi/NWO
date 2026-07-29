@@ -299,6 +299,17 @@ export function getCardById(id: string): AbilityCard | undefined {
   return CARD_INDEX.get(id);
 }
 
+const CARD_OWNER = new Map<string, string>();
+for (const character of CHARACTERS) {
+  for (const card of character.abilityCards) {
+    CARD_OWNER.set(card.id, character.id);
+  }
+}
+
+export function getCharacterIdForCard(cardId: string): string | undefined {
+  return CARD_OWNER.get(cardId);
+}
+
 export function getDefaultDeck(characterId: string): AbilityCard[] {
   const character = getCharacterById(characterId);
   if (!character) return [];

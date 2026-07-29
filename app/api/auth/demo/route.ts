@@ -8,6 +8,9 @@ import {
 } from "@/lib/auth";
 import { createUserSafe } from "@/lib/models";
 import { toUserPublic, type UserRecord } from "@/lib/schema";
+import { grantStarterKit } from "@/lib/shop/models";
+import { ECONOMY } from "@/lib/shop/economy";
+import { economyDefaults } from "@/lib/shop/userDefaults";
 
 export async function POST() {
   const now = new Date().toISOString();
@@ -25,11 +28,18 @@ export async function POST() {
     losses: 0,
     level: 1,
     xp: 0,
+    ...economyDefaults(),
     createdAt: now,
     updatedAt: now,
   };
 
   await createUserSafe(user);
+  await grantStarterKit(user.userId);
+  const fresh = {
+    ...user,
+    starterGranted: true,
+    credits: ECONOMY.STARTING_CREDITS,
+  };
 
   const token = createSession({
     userId: user.userId,
@@ -37,7 +47,7 @@ export async function POST() {
     nickname: user.nickname,
   });
 
-  const response = NextResponse.json({ user: toUserPublic(user) });
+  const response = NextResponse.json({ user: toUserPublic(fresh) });
   response.cookies.set(SESSION_COOKIE, token, sessionCookieOptions());
   return response;
 }

@@ -45,11 +45,15 @@ function CollectionCardItem({
   countInDeck,
   maxCopies,
   canAdd,
+  ownedCount,
+  isNew,
 }: {
   card: AbilityCard;
   countInDeck: number;
   maxCopies: number;
   canAdd: boolean;
+  ownedCount: number;
+  isNew?: boolean;
 }) {
   const addCard = useDeckBuilderStore((s) => s.addCard);
   const setPreviewCard = useDeckBuilderStore((s) => s.setPreviewCard);
@@ -123,6 +127,37 @@ function CollectionCardItem({
             </span>
           </div>
         )}
+        {isNew && (
+          <span
+            style={{
+              position: "absolute",
+              top: 5,
+              right: 5,
+              padding: "2px 5px",
+              borderRadius: 4,
+              background: COLORS.gold,
+              color: COLORS.bg_void,
+              font: `700 9px ${TYPOGRAPHY.ui}`,
+              letterSpacing: "0.06em",
+              zIndex: 2,
+            }}
+          >
+            NEW
+          </span>
+        )}
+        <span
+          style={{
+            position: "absolute",
+            bottom: 4,
+            right: 6,
+            font: `700 10px ${TYPOGRAPHY.ui}`,
+            color: COLORS.text_primary,
+            textShadow: "0 1px 2px #000",
+            zIndex: 2,
+          }}
+        >
+          ×{ownedCount}
+        </span>
         <div
           style={{
             position: "absolute",
@@ -233,13 +268,15 @@ export function CollectionGrid({ cards }: { cards: FilteredCard[] }) {
       }}
     >
       <AnimatePresence mode="popLayout">
-        {cards.map(({ card, countInDeck, maxCopies, canAdd }) => (
+        {cards.map(({ card, countInDeck, maxCopies, canAdd, ownedCount, isNew }) => (
           <CollectionCardItem
             key={card.id}
             card={card}
             countInDeck={countInDeck}
             maxCopies={maxCopies}
             canAdd={canAdd}
+            ownedCount={ownedCount}
+            isNew={isNew}
           />
         ))}
       </AnimatePresence>
