@@ -1,19 +1,14 @@
 import { NextResponse } from "next/server";
 import { generateId, getSessionPayload } from "@/lib/auth";
-import { getCharacterById } from "@/lib/data";
+import { getCardById, getCharacterById } from "@/lib/data";
+import { validateCardIds } from "@/lib/game/deckValidator";
 import { createDeckSafe, listDecksByUserSafe } from "@/lib/models";
 import type { DeckRecord } from "@/lib/schema";
 import { createDeckSchema } from "@/lib/validation";
 
 function validateDeckCards(characterId: string, cardIds: string[]): boolean {
-  const character = getCharacterById(characterId);
-  if (!character) return false;
-  const validIds = new Set(character.abilityCards.map((c) => c.id));
-  return (
-    cardIds.length >= 20 &&
-    cardIds.length <= 30 &&
-    cardIds.every((id) => validIds.has(id))
-  );
+  if (!getCharacterById(characterId)) return false;
+  return validateCardIds(characterId, cardIds, getCardById);
 }
 
 export async function GET() {

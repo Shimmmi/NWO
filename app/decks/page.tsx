@@ -1,5 +1,7 @@
-import { DeckBuilder } from "@/components/deck-builder";
+"use client";
+
+import { DeckBuilderPage } from "@/components/deck-builder/DeckBuilderPage";
 
 export default function DecksPage() {
-  return <DeckBuilder />;
+  return <DeckBuilderPage />;
 }

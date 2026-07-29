@@ -14,12 +14,13 @@ export const loginSchema = z.object({
 export const createDeckSchema = z.object({
   name: z.string().min(1).max(64),
   characterId: z.string().min(1),
-  cardIds: z.array(z.string()).min(20).max(30),
+  /** Allow drafts (0–30); isValid is computed server-side via deck rules */
+  cardIds: z.array(z.string()).max(30),
 });
 
 export const updateDeckSchema = z.object({
   name: z.string().min(1).max(64).optional(),
-  cardIds: z.array(z.string()).min(20).max(30).optional(),
+  cardIds: z.array(z.string()).max(30).optional(),
 });
 
 export const createGameSchema = z.object({

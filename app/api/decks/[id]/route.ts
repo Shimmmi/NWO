@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { getSessionPayload } from "@/lib/auth";
-import { getCharacterById } from "@/lib/data";
+import { getCardById, getCharacterById } from "@/lib/data";
+import { validateCardIds } from "@/lib/game/deckValidator";
 import {
   deleteDeckSafe,
   getDeckByIdSafe,
@@ -9,17 +10,29 @@ import {
 import { updateDeckSchema } from "@/lib/validation";
 
 function validateDeckCards(characterId: string, cardIds: string[]): boolean {
-  const character = getCharacterById(characterId);
-  if (!character) return false;
-  const validIds = new Set(character.abilityCards.map((c) => c.id));
-  return (
-    cardIds.length >= 20 &&
-    cardIds.length <= 30 &&
-    cardIds.every((id) => validIds.has(id))
-  );
+  if (!getCharacterById(characterId)) return false;
+  return validateCardIds(characterId, cardIds, getCardById);
 }
 
 type RouteContext = { params: Promise<{ id: string }> };
+
+export async function GET(_request: Request, { params }: RouteContext) {
+  const session = await getSessionPayload();
+  if (!session) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
+  const { id } = await params;
+  const deck = await getDeckByIdSafe(id);
+  if (!deck) {
+    return NextResponse.json({ error: "Deck not found" }, { status: 404 });
+  }
+  if (deck.userId !== session.userId) {
+    return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+  }
+
+  return NextResponse.json({ deck });
+}
 
 export async function PUT(request: Request, { params }: RouteContext) {
   const session = await getSessionPayload();
