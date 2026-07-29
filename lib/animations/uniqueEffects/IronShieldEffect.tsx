@@ -1,0 +1,1 @@
+export { IronShieldEffect } from "./UniqueEffectsImpl";

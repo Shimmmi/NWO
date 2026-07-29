@@ -1,0 +1,1 @@
+export { BearRoarEffect } from "./UniqueEffectsImpl";

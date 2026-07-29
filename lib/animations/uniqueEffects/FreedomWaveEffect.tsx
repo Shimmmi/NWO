@@ -1,0 +1,1 @@
+export { FreedomWaveEffect } from "./UniqueEffectsImpl";

@@ -1,0 +1,1 @@
+export { TridentStrikeEffect } from "./UniqueEffectsImpl";

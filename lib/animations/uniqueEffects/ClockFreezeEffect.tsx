@@ -1,0 +1,1 @@
+export { ClockFreezeEffect } from "./UniqueEffectsImpl";

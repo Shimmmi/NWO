@@ -1,0 +1,1 @@
+export { PhoenixRiseEffect } from "./UniqueEffectsImpl";

@@ -1,0 +1,22 @@
+# Юнит поднимает стек БЕЗ --build — и это намеренно: автостарт после ребута
+# не должен пересобирать образ. После правок кода образ пересобирается вручную:
+#   cd /opt/NWO && set -a && . ./.env.docker.prod && set +a \
+#     && docker compose -p nwo -f docker-compose.prod.yml up -d --build
+# (или ./scripts/deploy.sh, который делает это сам).
+
+[Unit]
+Description=WORLD ORDER Docker stack (parallel to waifu-bot)
+After=docker.service network-online.target
+Wants=network-online.target
+Requires=docker.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+WorkingDirectory=/opt/NWO
+ExecStart=/usr/bin/docker compose -p nwo -f docker-compose.prod.yml up -d
+ExecStop=/usr/bin/docker compose -p nwo -f docker-compose.prod.yml down
+TimeoutStartSec=300
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,55 @@
+# Dev-стек. Один процесс `app` обслуживает HTTP и WebSocket на порту 3000.
+# Usage: docker compose up -d --build
+
+services:
+  redis:
+    image: redis:7-alpine
+    command: >
+      redis-server
+      --appendonly yes
+      --maxmemory 256mb
+      --maxmemory-policy allkeys-lru
+    volumes:
+      - nwo-redis-dev-data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 3s
+      retries: 5
+
+  dynamodb-local:
+    image: amazon/dynamodb-local:latest
+    ports:
+      # Наружу тот же 8020, что и в prod-стеке: .env.local один на оба случая.
+      - "127.0.0.1:8020:8000"
+    command: "-jar DynamoDBLocal.jar -inMemory -sharedDb"
+
+  app:
+    build:
+      context: .
+      target: runner
+    command: npx tsx server/app-server.ts
+    working_dir: /app
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+      - HOSTNAME=0.0.0.0
+      - REDIS_URL=redis://redis:6379
+    env_file: .env.docker
+    depends_on:
+      redis:
+        condition: service_healthy
+      dynamodb-local:
+        condition: service_started
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://127.0.0.1:3000/nwo/api/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 40s
+    stop_grace_period: 30s
+
+volumes:
+  nwo-redis-dev-data:

@@ -1,0 +1,77 @@
+# Production stack — standalone (no merge with docker-compose.yml).
+# Usage: docker compose -p nwo -f docker-compose.prod.yml up -d --build
+#
+# Один процесс `app` обслуживает и HTTP, и WebSocket-апгрейд на /nwo/ws (порт 3000).
+# Отдельного WS-сервиса на 3001 больше нет.
+
+services:
+  # Собственный Redis: хостовый использовать нельзя — он забинден на 127.0.0.1
+  # (недостижим из docker-сети), его db0 занят waifu-bot, а политика
+  # вытеснения там noeviction.
+  redis:
+    image: redis:7-alpine
+    command: >
+      redis-server
+      --appendonly yes
+      --maxmemory 256mb
+      --maxmemory-policy allkeys-lru
+    volumes:
+      - nwo-redis-data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 3s
+      retries: 5
+    deploy:
+      resources:
+        limits:
+          memory: 320M
+    # Порт наружу НЕ публикуется — доступ только внутри сети nwo_default.
+
+  dynamodb-local:
+    image: amazon/dynamodb-local:latest
+    user: "0:0"
+    ports:
+      - "127.0.0.1:8020:8000"
+    command: "-jar DynamoDBLocal.jar -sharedDb -dbPath /data"
+    volumes:
+      - nwo-dynamodb-data:/data
+
+  app:
+    build:
+      context: .
+      target: runner
+    command: npx tsx server/app-server.ts
+    working_dir: /app
+    ports:
+      - "127.0.0.1:3000:3000"
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+      - HOSTNAME=0.0.0.0
+      - REDIS_URL=redis://redis:6379
+    # Список задаётся в env-файле: без него WebSocket примет апгрейд с любого
+    # сайта, так как Same-Origin Policy на сокеты не распространяется.
+    env_file: .env.docker.prod
+    depends_on:
+      redis:
+        condition: service_healthy
+      dynamodb-local:
+        condition: service_started
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://127.0.0.1:3000/nwo/api/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 40s
+    # Запас на graceful shutdown: разослать 4503 и дописать матчи в Redis.
+    stop_grace_period: 30s
+    deploy:
+      resources:
+        limits:
+          # Один процесс делает работу двух прежних (было 512M на каждый).
+          memory: 768M
+
+volumes:
+  nwo-dynamodb-data:
+  nwo-redis-data:

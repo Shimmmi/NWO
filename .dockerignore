@@ -1,0 +1,12 @@
+# Секреты: .env.docker.prod содержит продовый AUTH_SECRET и через `COPY . .`
+# оседал бы в builder-слое и в кеше сборки.
+.env.local
+.env.docker
+.env.docker.prod
+.env.docker.prod.example
+
+node_modules
+.next
+.git
+*.md
+info
