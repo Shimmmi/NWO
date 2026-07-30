@@ -34,6 +34,7 @@ photorealistic, real person likeness, celebrity face, politician photo, 3d rende
 | vladimir-pu | Russia cold-red #CC0000 on bunker-black with sparse gold #D4AF37 |
 | jin-shi | China crimson #DE2910 and industrial gold #FFDE00 |
 | vlado-zelenko | Ukraine blue #005BBB and gold #FFD500 under harsh spotlight |
+| neutral | Global bureaucracy green #2F6B4F and gray #6B7280 with wax-seal #C4A35A accents |
 
 ---
 
@@ -141,9 +142,9 @@ photorealistic, real person likeness, celebrity face, politician photo, 3d rende
   WORLD ORDER satirical political TCG illustration, editorial cartoon caricature, bold black ink outlines, flat cel-shaded color blocks, high contrast graphic satire, newspaper collage texture, exaggerated silhouette readable at thumbnail distance, hand-painted gouache-ink hybrid look, sharp readable shapes, no photorealism, no 3D CGI, parody fictional leaders only 512×768 2:3 RGBA transparent cutout for Three.js billboard, alphaTest-safe hard silhouette edges, full-body or strong 3/4 figure fills frame, isolated character only, no ground, no floor shadow, no backdrop, no scenery, no environment props behind subject Form 3 "AFU Legend": maximum grotesque escalation of the same caricature—stylized tryzub-shaped steel pauldrons with sandbag plating layered beneath, torn blue-gold flag-fabric cape as asymmetric flare, olive tee tearing into flag-plate scales across the ribs, mic-cluster spine rising behind the shoulders, flash-orb satellites orbiting the fists, tryzub halo shards behind the head, heroic wide stance, radiant defiance aura painted on the figure only, one dense attached-prop hard silhouette. Ukraine blue #005BBB and gold #FFD500 under harsh spotlight.
 - **Negative prompt:** `photorealistic, real person likeness, celebrity face, politician photo, 3d render, cgi, unreal engine, blender, octane, anime, manga, chibi, kawaii, cute style, soft airbrush, blurry, low contrast, muddy colors, watercolor wash, sketch only, unfinished, watermark, signature, logo, brand marks, readable text, letters, numbers, typography, UI chrome, card frame, nameplate, cost gem, rarity banner, health bar, speech bubble, gore, blood, nsfw, nudity, mutilation, extra limbs, duplicate heads, cropped head, cut-off feet, busy noise background behind cutout subject, pure white studio backdrop, gradient gray void, stock photo`
 
-> Всего карт: 80
+> Всего карт: 104 (80 фракция + 24 нейтрала)
 
-## Карты по колодам (80)
+## Карты по колодам (104)
 
 ### Дональд Рампф — США
 
@@ -793,6 +794,200 @@ photorealistic, real person likeness, celebrity face, politician photo, 3d rende
   WORLD ORDER satirical political TCG illustration, editorial cartoon caricature, bold black ink outlines, flat cel-shaded color blocks, high contrast graphic satire, newspaper collage texture, exaggerated silhouette readable at thumbnail distance, hand-painted gouache-ink hybrid look, sharp readable shapes, no photorealism, no 3D CGI, parody fictional leaders only 360×540 opaque art panel filling the entire frame, pure scene illustration only, NO card frame, NO chrome, NO UI, NO nameplate, NO cost gem, NO rarity banner, NO readable text; rarity expressed only as lighting FX intensity and color temperature within the scene Legendary FX: hot orange-gold sunrise radiance, brightest contrast. Visual scene: shattered iron chains exploding into blue-gold wings, sunrise flare behind, swarm of blank paper rectangles rocketing forward as liberated pamphlets with motion chevrons — will-to-victory satire, no people, no slogans. Ukraine blue #005BBB and gold #FFD500 under harsh spotlight.
 - **Negative prompt:** `photorealistic, real person likeness, celebrity face, politician photo, 3d render, cgi, unreal engine, blender, octane, anime, manga, chibi, kawaii, cute style, soft airbrush, blurry, low contrast, muddy colors, watercolor wash, sketch only, unfinished, watermark, signature, logo, brand marks, readable text, letters, numbers, typography, UI chrome, card frame, nameplate, cost gem, rarity banner, health bar, speech bubble, gore, blood, nsfw, nudity, mutilation, extra limbs, duplicate heads, cropped head, cut-off feet, busy noise background behind cutout subject, pure white studio backdrop, gradient gray void, stock photo`
 
+### Нейтралы — Глобальные решения
+
+#### nt-sovereign-net
+- **Файл:** `cards/nt-sovereign-net.webp`
+- **Размер:** 360×540
+- **Редкость (optics):** common
+- **Промпт (EN):**
+  WORLD ORDER satirical political TCG illustration, editorial cartoon caricature, bold black ink outlines, flat cel-shaded color blocks, high contrast graphic satire, newspaper collage texture, exaggerated silhouette readable at thumbnail distance, hand-painted gouache-ink hybrid look, sharp readable shapes, no photorealism, no 3D CGI, parody fictional leaders only 360×540 opaque art panel filling the entire frame, pure scene illustration only, NO card frame, NO chrome, NO UI, NO nameplate, NO cost gem, NO rarity banner, NO readable text; rarity expressed only as lighting FX intensity and color temperature within the scene Common FX: flat bureaucratic lamp. Visual core: cartoon globe trapped in a glass jar with oversized padlock, ethernet cables as prison bars, gray stamp blobs, green #2F6B4F seal glow — sovereign internet satire, no readable text. Global bureaucracy green #2F6B4F and gray #6B7280 with wax-seal #C4A35A accents.
+- **Negative prompt:** `photorealistic, real person likeness, celebrity face, politician photo, 3d render, cgi, unreal engine, blender, octane, anime, manga, chibi, kawaii, cute style, soft airbrush, blurry, low contrast, muddy colors, watercolor wash, sketch only, unfinished, watermark, signature, logo, brand marks, readable text, letters, numbers, typography, UI chrome, card frame, nameplate, cost gem, rarity banner, health bar, speech bubble, gore, blood, nsfw, nudity, mutilation, extra limbs, duplicate heads, cropped head, cut-off feet, busy noise background behind cutout subject, pure white studio backdrop, gradient gray void, stock photo`
+
+#### nt-state-messenger
+- **Файл:** `cards/nt-state-messenger.webp`
+- **Размер:** 360×540
+- **Редкость (optics):** common
+- **Промпт (EN):**
+  WORLD ORDER satirical political TCG illustration, editorial cartoon caricature, bold black ink outlines, flat cel-shaded color blocks, high contrast graphic satire, newspaper collage texture, exaggerated silhouette readable at thumbnail distance, hand-painted gouache-ink hybrid look, sharp readable shapes, no photorealism, no 3D CGI, parody fictional leaders only 360×540 opaque art panel filling the entire frame, pure scene illustration only, NO card frame, NO chrome, NO UI, NO nameplate, NO cost gem, NO rarity banner, NO readable text; rarity expressed only as lighting FX intensity and color temperature within the scene Common FX: soft desk lamp. Visual core: official chat-bubble courier bag stamped with blank wax seal, gray-suited stick courier silhouette delivering sealed envelopes, green bureaucratic aura — state messenger satire. Global bureaucracy green #2F6B4F and gray #6B7280 with wax-seal #C4A35A accents.
+- **Negative prompt:** `photorealistic, real person likeness, celebrity face, politician photo, 3d render, cgi, unreal engine, blender, octane, anime, manga, chibi, kawaii, cute style, soft airbrush, blurry, low contrast, muddy colors, watercolor wash, sketch only, unfinished, watermark, signature, logo, brand marks, readable text, letters, numbers, typography, UI chrome, card frame, nameplate, cost gem, rarity banner, health bar, speech bubble, gore, blood, nsfw, nudity, mutilation, extra limbs, duplicate heads, cropped head, cut-off feet, busy noise background behind cutout subject, pure white studio backdrop, gradient gray void, stock photo`
+
+#### nt-import-sub
+- **Файл:** `cards/nt-import-sub.webp`
+- **Размер:** 360×540
+- **Редкость (optics):** common
+- **Промпт (EN):**
+  WORLD ORDER satirical political TCG illustration, editorial cartoon caricature, bold black ink outlines, flat cel-shaded color blocks, high contrast graphic satire, newspaper collage texture, exaggerated silhouette readable at thumbnail distance, hand-painted gouache-ink hybrid look, sharp readable shapes, no photorealism, no 3D CGI, parody fictional leaders only 360×540 opaque art panel filling the entire frame, pure scene illustration only, NO card frame, NO chrome, NO UI, NO nameplate, NO cost gem, NO rarity banner, NO readable text; rarity expressed only as lighting FX intensity and color temperature within the scene Common FX: modest workshop light. Visual core: high-tech microchip replaced by a proud beetroot with USB ports and ribbon cable leaves, presentation podium silhouette, green-gray factory backdrop — import substitution satire. Global bureaucracy green #2F6B4F and gray #6B7280 with wax-seal #C4A35A accents.
+- **Negative prompt:** `photorealistic, real person likeness, celebrity face, politician photo, 3d render, cgi, unreal engine, blender, octane, anime, manga, chibi, kawaii, cute style, soft airbrush, blurry, low contrast, muddy colors, watercolor wash, sketch only, unfinished, watermark, signature, logo, brand marks, readable text, letters, numbers, typography, UI chrome, card frame, nameplate, cost gem, rarity banner, health bar, speech bubble, gore, blood, nsfw, nudity, mutilation, extra limbs, duplicate heads, cropped head, cut-off feet, busy noise background behind cutout subject, pure white studio backdrop, gradient gray void, stock photo`
+
+#### nt-patriotic-ad
+- **Файл:** `cards/nt-patriotic-ad.webp`
+- **Размер:** 360×540
+- **Редкость (optics):** common
+- **Промпт (EN):**
+  WORLD ORDER satirical political TCG illustration, editorial cartoon caricature, bold black ink outlines, flat cel-shaded color blocks, high contrast graphic satire, newspaper collage texture, exaggerated silhouette readable at thumbnail distance, hand-painted gouache-ink hybrid look, sharp readable shapes, no photorealism, no 3D CGI, parody fictional leaders only 360×540 opaque art panel filling the entire frame, pure scene illustration only, NO card frame, NO chrome, NO UI, NO nameplate, NO cost gem, NO rarity banner, NO readable text; rarity expressed only as lighting FX intensity and color temperature within the scene Common FX: TV glow. Visual core: looping billboard stack of identical blank patriotic posters, megaphone raining confetti slogans as abstract shapes, hypnotic green rings — patriotic ad satire, no letters. Global bureaucracy green #2F6B4F and gray #6B7280 with wax-seal #C4A35A accents.
+- **Negative prompt:** `photorealistic, real person likeness, celebrity face, politician photo, 3d render, cgi, unreal engine, blender, octane, anime, manga, chibi, kawaii, cute style, soft airbrush, blurry, low contrast, muddy colors, watercolor wash, sketch only, unfinished, watermark, signature, logo, brand marks, readable text, letters, numbers, typography, UI chrome, card frame, nameplate, cost gem, rarity banner, health bar, speech bubble, gore, blood, nsfw, nudity, mutilation, extra limbs, duplicate heads, cropped head, cut-off feet, busy noise background behind cutout subject, pure white studio backdrop, gradient gray void, stock photo`
+
+#### nt-emergency
+- **Файл:** `cards/nt-emergency.webp`
+- **Размер:** 360×540
+- **Редкость (optics):** common
+- **Промпт (EN):**
+  WORLD ORDER satirical political TCG illustration, editorial cartoon caricature, bold black ink outlines, flat cel-shaded color blocks, high contrast graphic satire, newspaper collage texture, exaggerated silhouette readable at thumbnail distance, hand-painted gouache-ink hybrid look, sharp readable shapes, no photorealism, no 3D CGI, parody fictional leaders only 360×540 opaque art panel filling the entire frame, pure scene illustration only, NO card frame, NO chrome, NO UI, NO nameplate, NO cost gem, NO rarity banner, NO readable text; rarity expressed only as lighting FX intensity and color temperature within the scene Common FX: emergency amber blink. Visual core: giant temporary stamp hovering forever above city hall, calendar pages stacked to the ceiling, green wax drip — emergency powers satire. Global bureaucracy green #2F6B4F and gray #6B7280 with wax-seal #C4A35A accents.
+- **Negative prompt:** `photorealistic, real person likeness, celebrity face, politician photo, 3d render, cgi, unreal engine, blender, octane, anime, manga, chibi, kawaii, cute style, soft airbrush, blurry, low contrast, muddy colors, watercolor wash, sketch only, unfinished, watermark, signature, logo, brand marks, readable text, letters, numbers, typography, UI chrome, card frame, nameplate, cost gem, rarity banner, health bar, speech bubble, gore, blood, nsfw, nudity, mutilation, extra limbs, duplicate heads, cropped head, cut-off feet, busy noise background behind cutout subject, pure white studio backdrop, gradient gray void, stock photo`
+
+#### nt-loyalty
+- **Файл:** `cards/nt-loyalty.webp`
+- **Размер:** 360×540
+- **Редкость (optics):** common
+- **Промпт (EN):**
+  WORLD ORDER satirical political TCG illustration, editorial cartoon caricature, bold black ink outlines, flat cel-shaded color blocks, high contrast graphic satire, newspaper collage texture, exaggerated silhouette readable at thumbnail distance, hand-painted gouache-ink hybrid look, sharp readable shapes, no photorealism, no 3D CGI, parody fictional leaders only 360×540 opaque art panel filling the entire frame, pure scene illustration only, NO card frame, NO chrome, NO UI, NO nameplate, NO cost gem, NO rarity banner, NO readable text; rarity expressed only as lighting FX intensity and color temperature within the scene Common FX: clipboard spotlight. Visual core: endless questionnaire scroll with checkboxes, Wi-Fi symbol crossed by rubber stamp, anxious pencil silhouette — loyalty form satire, no readable questions. Global bureaucracy green #2F6B4F and gray #6B7280 with wax-seal #C4A35A accents.
+- **Negative prompt:** `photorealistic, real person likeness, celebrity face, politician photo, 3d render, cgi, unreal engine, blender, octane, anime, manga, chibi, kawaii, cute style, soft airbrush, blurry, low contrast, muddy colors, watercolor wash, sketch only, unfinished, watermark, signature, logo, brand marks, readable text, letters, numbers, typography, UI chrome, card frame, nameplate, cost gem, rarity banner, health bar, speech bubble, gore, blood, nsfw, nudity, mutilation, extra limbs, duplicate heads, cropped head, cut-off feet, busy noise background behind cutout subject, pure white studio backdrop, gradient gray void, stock photo`
+
+#### nt-briefing
+- **Файл:** `cards/nt-briefing.webp`
+- **Размер:** 360×540
+- **Редкость (optics):** common
+- **Промпт (EN):**
+  WORLD ORDER satirical political TCG illustration, editorial cartoon caricature, bold black ink outlines, flat cel-shaded color blocks, high contrast graphic satire, newspaper collage texture, exaggerated silhouette readable at thumbnail distance, hand-painted gouache-ink hybrid look, sharp readable shapes, no photorealism, no 3D CGI, parody fictional leaders only 360×540 opaque art panel filling the entire frame, pure scene illustration only, NO card frame, NO chrome, NO UI, NO nameplate, NO cost gem, NO rarity banner, NO readable text; rarity expressed only as lighting FX intensity and color temperature within the scene Common FX: podium cold light. Visual core: press podium with microphones taped shut, empty question cards falling into a shredder, gray curtains — briefing without questions satire. Global bureaucracy green #2F6B4F and gray #6B7280 with wax-seal #C4A35A accents.
+- **Negative prompt:** `photorealistic, real person likeness, celebrity face, politician photo, 3d render, cgi, unreal engine, blender, octane, anime, manga, chibi, kawaii, cute style, soft airbrush, blurry, low contrast, muddy colors, watercolor wash, sketch only, unfinished, watermark, signature, logo, brand marks, readable text, letters, numbers, typography, UI chrome, card frame, nameplate, cost gem, rarity banner, health bar, speech bubble, gore, blood, nsfw, nudity, mutilation, extra limbs, duplicate heads, cropped head, cut-off feet, busy noise background behind cutout subject, pure white studio backdrop, gradient gray void, stock photo`
+
+#### nt-optimize
+- **Файл:** `cards/nt-optimize.webp`
+- **Размер:** 360×540
+- **Редкость (optics):** common
+- **Промпт (EN):**
+  WORLD ORDER satirical political TCG illustration, editorial cartoon caricature, bold black ink outlines, flat cel-shaded color blocks, high contrast graphic satire, newspaper collage texture, exaggerated silhouette readable at thumbnail distance, hand-painted gouache-ink hybrid look, sharp readable shapes, no photorealism, no 3D CGI, parody fictional leaders only 360×540 opaque art panel filling the entire frame, pure scene illustration only, NO card frame, NO chrome, NO UI, NO nameplate, NO cost gem, NO rarity banner, NO readable text; rarity expressed only as lighting FX intensity and color temperature within the scene Common FX: ledger green lamp. Visual core: budget scissors cutting a hospital cross while a banquet table glows gold, scales tipping toward cake — budget optimization satire. Global bureaucracy green #2F6B4F and gray #6B7280 with wax-seal #C4A35A accents.
+- **Negative prompt:** `photorealistic, real person likeness, celebrity face, politician photo, 3d render, cgi, unreal engine, blender, octane, anime, manga, chibi, kawaii, cute style, soft airbrush, blurry, low contrast, muddy colors, watercolor wash, sketch only, unfinished, watermark, signature, logo, brand marks, readable text, letters, numbers, typography, UI chrome, card frame, nameplate, cost gem, rarity banner, health bar, speech bubble, gore, blood, nsfw, nudity, mutilation, extra limbs, duplicate heads, cropped head, cut-off feet, busy noise background behind cutout subject, pure white studio backdrop, gradient gray void, stock photo`
+
+#### nt-parallel
+- **Файл:** `cards/nt-parallel.webp`
+- **Размер:** 360×540
+- **Редкость (optics):** rare
+- **Промпт (EN):**
+  WORLD ORDER satirical political TCG illustration, editorial cartoon caricature, bold black ink outlines, flat cel-shaded color blocks, high contrast graphic satire, newspaper collage texture, exaggerated silhouette readable at thumbnail distance, hand-painted gouache-ink hybrid look, sharp readable shapes, no photorealism, no 3D CGI, parody fictional leaders only 360×540 opaque art panel filling the entire frame, pure scene illustration only, NO card frame, NO chrome, NO UI, NO nameplate, NO cost gem, NO rarity banner, NO readable text; rarity expressed only as lighting FX intensity and color temperature within the scene Rare FX: cooler warehouse rim. Visual core: sealed crates mysteriously appearing on a customs dock, parallel arrows sneaking under a barrier, green-gray fog — parallel import satire. Global bureaucracy green #2F6B4F and gray #6B7280 with wax-seal #C4A35A accents.
+- **Negative prompt:** `photorealistic, real person likeness, celebrity face, politician photo, 3d render, cgi, unreal engine, blender, octane, anime, manga, chibi, kawaii, cute style, soft airbrush, blurry, low contrast, muddy colors, watercolor wash, sketch only, unfinished, watermark, signature, logo, brand marks, readable text, letters, numbers, typography, UI chrome, card frame, nameplate, cost gem, rarity banner, health bar, speech bubble, gore, blood, nsfw, nudity, mutilation, extra limbs, duplicate heads, cropped head, cut-off feet, busy noise background behind cutout subject, pure white studio backdrop, gradient gray void, stock photo`
+
+#### nt-foreign-agent
+- **Файл:** `cards/nt-foreign-agent.webp`
+- **Размер:** 360×540
+- **Редкость (optics):** rare
+- **Промпт (EN):**
+  WORLD ORDER satirical political TCG illustration, editorial cartoon caricature, bold black ink outlines, flat cel-shaded color blocks, high contrast graphic satire, newspaper collage texture, exaggerated silhouette readable at thumbnail distance, hand-painted gouache-ink hybrid look, sharp readable shapes, no photorealism, no 3D CGI, parody fictional leaders only 360×540 opaque art panel filling the entire frame, pure scene illustration only, NO card frame, NO chrome, NO UI, NO nameplate, NO cost gem, NO rarity banner, NO readable text; rarity expressed only as lighting FX intensity and color temperature within the scene Rare FX: harsh stamp glow. Visual core: tiny document crushed under a gigantic label sticker bigger than the paper, unreadably dense fine-print texture (no letters), green seal — foreign agent satire. Global bureaucracy green #2F6B4F and gray #6B7280 with wax-seal #C4A35A accents.
+- **Negative prompt:** `photorealistic, real person likeness, celebrity face, politician photo, 3d render, cgi, unreal engine, blender, octane, anime, manga, chibi, kawaii, cute style, soft airbrush, blurry, low contrast, muddy colors, watercolor wash, sketch only, unfinished, watermark, signature, logo, brand marks, readable text, letters, numbers, typography, UI chrome, card frame, nameplate, cost gem, rarity banner, health bar, speech bubble, gore, blood, nsfw, nudity, mutilation, extra limbs, duplicate heads, cropped head, cut-off feet, busy noise background behind cutout subject, pure white studio backdrop, gradient gray void, stock photo`
+
+#### nt-cbdc
+- **Файл:** `cards/nt-cbdc.webp`
+- **Размер:** 360×540
+- **Редкость (optics):** rare
+- **Промпт (EN):**
+  WORLD ORDER satirical political TCG illustration, editorial cartoon caricature, bold black ink outlines, flat cel-shaded color blocks, high contrast graphic satire, newspaper collage texture, exaggerated silhouette readable at thumbnail distance, hand-painted gouache-ink hybrid look, sharp readable shapes, no photorealism, no 3D CGI, parody fictional leaders only 360×540 opaque art panel filling the entire frame, pure scene illustration only, NO card frame, NO chrome, NO UI, NO nameplate, NO cost gem, NO rarity banner, NO readable text; rarity expressed only as lighting FX intensity and color temperature within the scene Rare FX: digital cyan rim on green base. Visual core: coin transforming into a tracking QR-orb watched by a friendly CCTV eye, ledger chains — digital sovereignty satire. Global bureaucracy green #2F6B4F and gray #6B7280 with wax-seal #C4A35A accents.
+- **Negative prompt:** `photorealistic, real person likeness, celebrity face, politician photo, 3d render, cgi, unreal engine, blender, octane, anime, manga, chibi, kawaii, cute style, soft airbrush, blurry, low contrast, muddy colors, watercolor wash, sketch only, unfinished, watermark, signature, logo, brand marks, readable text, letters, numbers, typography, UI chrome, card frame, nameplate, cost gem, rarity banner, health bar, speech bubble, gore, blood, nsfw, nudity, mutilation, extra limbs, duplicate heads, cropped head, cut-off feet, busy noise background behind cutout subject, pure white studio backdrop, gradient gray void, stock photo`
+
+#### nt-youth-camp
+- **Файл:** `cards/nt-youth-camp.webp`
+- **Размер:** 360×540
+- **Редкость (optics):** rare
+- **Промпт (EN):**
+  WORLD ORDER satirical political TCG illustration, editorial cartoon caricature, bold black ink outlines, flat cel-shaded color blocks, high contrast graphic satire, newspaper collage texture, exaggerated silhouette readable at thumbnail distance, hand-painted gouache-ink hybrid look, sharp readable shapes, no photorealism, no 3D CGI, parody fictional leaders only 360×540 opaque art panel filling the entire frame, pure scene illustration only, NO card frame, NO chrome, NO UI, NO nameplate, NO cost gem, NO rarity banner, NO readable text; rarity expressed only as lighting FX intensity and color temperature within the scene Rare FX: morning camp light. Visual core: marching boots and flags around a drill square, essay notebooks stacked into a fortress, green armor aura — patriotic camp satire, no faces. Global bureaucracy green #2F6B4F and gray #6B7280 with wax-seal #C4A35A accents.
+- **Negative prompt:** `photorealistic, real person likeness, celebrity face, politician photo, 3d render, cgi, unreal engine, blender, octane, anime, manga, chibi, kawaii, cute style, soft airbrush, blurry, low contrast, muddy colors, watercolor wash, sketch only, unfinished, watermark, signature, logo, brand marks, readable text, letters, numbers, typography, UI chrome, card frame, nameplate, cost gem, rarity banner, health bar, speech bubble, gore, blood, nsfw, nudity, mutilation, extra limbs, duplicate heads, cropped head, cut-off feet, busy noise background behind cutout subject, pure white studio backdrop, gradient gray void, stock photo`
+
+#### nt-exit-ban
+- **Файл:** `cards/nt-exit-ban.webp`
+- **Размер:** 360×540
+- **Редкость (optics):** rare
+- **Промпт (EN):**
+  WORLD ORDER satirical political TCG illustration, editorial cartoon caricature, bold black ink outlines, flat cel-shaded color blocks, high contrast graphic satire, newspaper collage texture, exaggerated silhouette readable at thumbnail distance, hand-painted gouache-ink hybrid look, sharp readable shapes, no photorealism, no 3D CGI, parody fictional leaders only 360×540 opaque art panel filling the entire frame, pure scene illustration only, NO card frame, NO chrome, NO UI, NO nameplate, NO cost gem, NO rarity banner, NO readable text; rarity expressed only as lighting FX intensity and color temperature within the scene Rare FX: border cold light. Visual core: airport gate with velvet rope and a smiling closed stamp, passport melting into a house key — exit ban satire. Global bureaucracy green #2F6B4F and gray #6B7280 with wax-seal #C4A35A accents.
+- **Negative prompt:** `photorealistic, real person likeness, celebrity face, politician photo, 3d render, cgi, unreal engine, blender, octane, anime, manga, chibi, kawaii, cute style, soft airbrush, blurry, low contrast, muddy colors, watercolor wash, sketch only, unfinished, watermark, signature, logo, brand marks, readable text, letters, numbers, typography, UI chrome, card frame, nameplate, cost gem, rarity banner, health bar, speech bubble, gore, blood, nsfw, nudity, mutilation, extra limbs, duplicate heads, cropped head, cut-off feet, busy noise background behind cutout subject, pure white studio backdrop, gradient gray void, stock photo`
+
+#### nt-truth-min
+- **Файл:** `cards/nt-truth-min.webp`
+- **Размер:** 360×540
+- **Редкость (optics):** rare
+- **Промпт (EN):**
+  WORLD ORDER satirical political TCG illustration, editorial cartoon caricature, bold black ink outlines, flat cel-shaded color blocks, high contrast graphic satire, newspaper collage texture, exaggerated silhouette readable at thumbnail distance, hand-painted gouache-ink hybrid look, sharp readable shapes, no photorealism, no 3D CGI, parody fictional leaders only 360×540 opaque art panel filling the entire frame, pure scene illustration only, NO card frame, NO chrome, NO UI, NO nameplate, NO cost gem, NO rarity banner, NO readable text; rarity expressed only as lighting FX intensity and color temperature within the scene Rare FX: archive violet-green mix. Visual core: ministry filing cabinet rewriting yesterday's newspaper into blank white sheets, version stamp 3.0 as abstract glyph blob — ministry of truth satire. Global bureaucracy green #2F6B4F and gray #6B7280 with wax-seal #C4A35A accents.
+- **Negative prompt:** `photorealistic, real person likeness, celebrity face, politician photo, 3d render, cgi, unreal engine, blender, octane, anime, manga, chibi, kawaii, cute style, soft airbrush, blurry, low contrast, muddy colors, watercolor wash, sketch only, unfinished, watermark, signature, logo, brand marks, readable text, letters, numbers, typography, UI chrome, card frame, nameplate, cost gem, rarity banner, health bar, speech bubble, gore, blood, nsfw, nudity, mutilation, extra limbs, duplicate heads, cropped head, cut-off feet, busy noise background behind cutout subject, pure white studio backdrop, gradient gray void, stock photo`
+
+#### nt-sanction-proof
+- **Файл:** `cards/nt-sanction-proof.webp`
+- **Размер:** 360×540
+- **Редкость (optics):** rare
+- **Промпт (EN):**
+  WORLD ORDER satirical political TCG illustration, editorial cartoon caricature, bold black ink outlines, flat cel-shaded color blocks, high contrast graphic satire, newspaper collage texture, exaggerated silhouette readable at thumbnail distance, hand-painted gouache-ink hybrid look, sharp readable shapes, no photorealism, no 3D CGI, parody fictional leaders only 360×540 opaque art panel filling the entire frame, pure scene illustration only, NO card frame, NO chrome, NO UI, NO nameplate, NO cost gem, NO rarity banner, NO readable text; rarity expressed only as lighting FX intensity and color temperature within the scene Rare FX: bunker protective bloom. Visual core: pantry fortress of jars and PDF folders forming a shield wall, proud green force field — sanction resilience satire. Global bureaucracy green #2F6B4F and gray #6B7280 with wax-seal #C4A35A accents.
+- **Negative prompt:** `photorealistic, real person likeness, celebrity face, politician photo, 3d render, cgi, unreal engine, blender, octane, anime, manga, chibi, kawaii, cute style, soft airbrush, blurry, low contrast, muddy colors, watercolor wash, sketch only, unfinished, watermark, signature, logo, brand marks, readable text, letters, numbers, typography, UI chrome, card frame, nameplate, cost gem, rarity banner, health bar, speech bubble, gore, blood, nsfw, nudity, mutilation, extra limbs, duplicate heads, cropped head, cut-off feet, busy noise background behind cutout subject, pure white studio backdrop, gradient gray void, stock photo`
+
+#### nt-nationalize
+- **Файл:** `cards/nt-nationalize.webp`
+- **Размер:** 360×540
+- **Редкость (optics):** rare
+- **Промпт (EN):**
+  WORLD ORDER satirical political TCG illustration, editorial cartoon caricature, bold black ink outlines, flat cel-shaded color blocks, high contrast graphic satire, newspaper collage texture, exaggerated silhouette readable at thumbnail distance, hand-painted gouache-ink hybrid look, sharp readable shapes, no photorealism, no 3D CGI, parody fictional leaders only 360×540 opaque art panel filling the entire frame, pure scene illustration only, NO card frame, NO chrome, NO UI, NO nameplate, NO cost gem, NO rarity banner, NO readable text; rarity expressed only as lighting FX intensity and color temperature within the scene Rare FX: vault gold-green kick. Visual core: factory key swapping hands into a state seal fist, stolen card silhouette flying into a green briefcase — nationalization satire. Global bureaucracy green #2F6B4F and gray #6B7280 with wax-seal #C4A35A accents.
+- **Negative prompt:** `photorealistic, real person likeness, celebrity face, politician photo, 3d render, cgi, unreal engine, blender, octane, anime, manga, chibi, kawaii, cute style, soft airbrush, blurry, low contrast, muddy colors, watercolor wash, sketch only, unfinished, watermark, signature, logo, brand marks, readable text, letters, numbers, typography, UI chrome, card frame, nameplate, cost gem, rarity banner, health bar, speech bubble, gore, blood, nsfw, nudity, mutilation, extra limbs, duplicate heads, cropped head, cut-off feet, busy noise background behind cutout subject, pure white studio backdrop, gradient gray void, stock photo`
+
+#### nt-martial
+- **Файл:** `cards/nt-martial.webp`
+- **Размер:** 360×540
+- **Редкость (optics):** epic
+- **Промпт (EN):**
+  WORLD ORDER satirical political TCG illustration, editorial cartoon caricature, bold black ink outlines, flat cel-shaded color blocks, high contrast graphic satire, newspaper collage texture, exaggerated silhouette readable at thumbnail distance, hand-painted gouache-ink hybrid look, sharp readable shapes, no photorealism, no 3D CGI, parody fictional leaders only 360×540 opaque art panel filling the entire frame, pure scene illustration only, NO card frame, NO chrome, NO UI, NO nameplate, NO cost gem, NO rarity banner, NO readable text; rarity expressed only as lighting FX intensity and color temperature within the scene Epic FX: violet veins in green stamp. Visual core: city square under a colossal TEMPORARY rubber stamp, pigeons in tiny helmets, force dome — martial law satire. Global bureaucracy green #2F6B4F and gray #6B7280 with wax-seal #C4A35A accents.
+- **Negative prompt:** `photorealistic, real person likeness, celebrity face, politician photo, 3d render, cgi, unreal engine, blender, octane, anime, manga, chibi, kawaii, cute style, soft airbrush, blurry, low contrast, muddy colors, watercolor wash, sketch only, unfinished, watermark, signature, logo, brand marks, readable text, letters, numbers, typography, UI chrome, card frame, nameplate, cost gem, rarity banner, health bar, speech bubble, gore, blood, nsfw, nudity, mutilation, extra limbs, duplicate heads, cropped head, cut-off feet, busy noise background behind cutout subject, pure white studio backdrop, gradient gray void, stock photo`
+
+#### nt-referendum
+- **Файл:** `cards/nt-referendum.webp`
+- **Размер:** 360×540
+- **Редкость (optics):** epic
+- **Промпт (EN):**
+  WORLD ORDER satirical political TCG illustration, editorial cartoon caricature, bold black ink outlines, flat cel-shaded color blocks, high contrast graphic satire, newspaper collage texture, exaggerated silhouette readable at thumbnail distance, hand-painted gouache-ink hybrid look, sharp readable shapes, no photorealism, no 3D CGI, parody fictional leaders only 360×540 opaque art panel filling the entire frame, pure scene illustration only, NO card frame, NO chrome, NO UI, NO nameplate, NO cost gem, NO rarity banner, NO readable text; rarity expressed only as lighting FX intensity and color temperature within the scene Epic FX: dramatic ballot backlight. Visual core: ballot boxes overflowing with identical checkmarks, 97% pie chart as abstract wedges, supervised pencil silhouettes — predictable referendum satire. Global bureaucracy green #2F6B4F and gray #6B7280 with wax-seal #C4A35A accents.
+- **Negative prompt:** `photorealistic, real person likeness, celebrity face, politician photo, 3d render, cgi, unreal engine, blender, octane, anime, manga, chibi, kawaii, cute style, soft airbrush, blurry, low contrast, muddy colors, watercolor wash, sketch only, unfinished, watermark, signature, logo, brand marks, readable text, letters, numbers, typography, UI chrome, card frame, nameplate, cost gem, rarity banner, health bar, speech bubble, gore, blood, nsfw, nudity, mutilation, extra limbs, duplicate heads, cropped head, cut-off feet, busy noise background behind cutout subject, pure white studio backdrop, gradient gray void, stock photo`
+
+#### nt-brain-tax
+- **Файл:** `cards/nt-brain-tax.webp`
+- **Размер:** 360×540
+- **Редкость (optics):** epic
+- **Промпт (EN):**
+  WORLD ORDER satirical political TCG illustration, editorial cartoon caricature, bold black ink outlines, flat cel-shaded color blocks, high contrast graphic satire, newspaper collage texture, exaggerated silhouette readable at thumbnail distance, hand-painted gouache-ink hybrid look, sharp readable shapes, no photorealism, no 3D CGI, parody fictional leaders only 360×540 opaque art panel filling the entire frame, pure scene illustration only, NO card frame, NO chrome, NO UI, NO nameplate, NO cost gem, NO rarity banner, NO readable text; rarity expressed only as lighting FX intensity and color temperature within the scene Epic FX: violet suitcase glow. Visual core: brains-as-luggage taxed at a customs desk, coins siphoning from departing silhouettes into a state coffer — brain drain tax satire. Global bureaucracy green #2F6B4F and gray #6B7280 with wax-seal #C4A35A accents.
+- **Negative prompt:** `photorealistic, real person likeness, celebrity face, politician photo, 3d render, cgi, unreal engine, blender, octane, anime, manga, chibi, kawaii, cute style, soft airbrush, blurry, low contrast, muddy colors, watercolor wash, sketch only, unfinished, watermark, signature, logo, brand marks, readable text, letters, numbers, typography, UI chrome, card frame, nameplate, cost gem, rarity banner, health bar, speech bubble, gore, blood, nsfw, nudity, mutilation, extra limbs, duplicate heads, cropped head, cut-off feet, busy noise background behind cutout subject, pure white studio backdrop, gradient gray void, stock photo`
+
+#### nt-panopticon
+- **Файл:** `cards/nt-panopticon.webp`
+- **Размер:** 360×540
+- **Редкость (optics):** epic
+- **Промпт (EN):**
+  WORLD ORDER satirical political TCG illustration, editorial cartoon caricature, bold black ink outlines, flat cel-shaded color blocks, high contrast graphic satire, newspaper collage texture, exaggerated silhouette readable at thumbnail distance, hand-painted gouache-ink hybrid look, sharp readable shapes, no photorealism, no 3D CGI, parody fictional leaders only 360×540 opaque art panel filling the entire frame, pure scene illustration only, NO card frame, NO chrome, NO UI, NO nameplate, NO cost gem, NO rarity banner, NO readable text; rarity expressed only as lighting FX intensity and color temperature within the scene Epic FX: many-eyed violet rim. Visual core: all-seeing CCTV flower of cameras blooming over a plaza, caring green smile on lenses, blocked playing cards freezing mid-air — panopticon satire. Global bureaucracy green #2F6B4F and gray #6B7280 with wax-seal #C4A35A accents.
+- **Negative prompt:** `photorealistic, real person likeness, celebrity face, politician photo, 3d render, cgi, unreal engine, blender, octane, anime, manga, chibi, kawaii, cute style, soft airbrush, blurry, low contrast, muddy colors, watercolor wash, sketch only, unfinished, watermark, signature, logo, brand marks, readable text, letters, numbers, typography, UI chrome, card frame, nameplate, cost gem, rarity banner, health bar, speech bubble, gore, blood, nsfw, nudity, mutilation, extra limbs, duplicate heads, cropped head, cut-off feet, busy noise background behind cutout subject, pure white studio backdrop, gradient gray void, stock photo`
+
+#### nt-sov-ai
+- **Файл:** `cards/nt-sov-ai.webp`
+- **Размер:** 360×540
+- **Редкость (optics):** epic
+- **Промпт (EN):**
+  WORLD ORDER satirical political TCG illustration, editorial cartoon caricature, bold black ink outlines, flat cel-shaded color blocks, high contrast graphic satire, newspaper collage texture, exaggerated silhouette readable at thumbnail distance, hand-painted gouache-ink hybrid look, sharp readable shapes, no photorealism, no 3D CGI, parody fictional leaders only 360×540 opaque art panel filling the entire frame, pure scene illustration only, NO card frame, NO chrome, NO UI, NO nameplate, NO cost gem, NO rarity banner, NO readable text; rarity expressed only as lighting FX intensity and color temperature within the scene Epic FX: violet neural sparks. Visual core: patriotic robot head photocopies rival aura into approved meme tiles, green circuit halo — sovereign AI satire, no readable memes. Global bureaucracy green #2F6B4F and gray #6B7280 with wax-seal #C4A35A accents.
+- **Negative prompt:** `photorealistic, real person likeness, celebrity face, politician photo, 3d render, cgi, unreal engine, blender, octane, anime, manga, chibi, kawaii, cute style, soft airbrush, blurry, low contrast, muddy colors, watercolor wash, sketch only, unfinished, watermark, signature, logo, brand marks, readable text, letters, numbers, typography, UI chrome, card frame, nameplate, cost gem, rarity banner, health bar, speech bubble, gore, blood, nsfw, nudity, mutilation, extra limbs, duplicate heads, cropped head, cut-off feet, busy noise background behind cutout subject, pure white studio backdrop, gradient gray void, stock photo`
+
+#### nt-mandate
+- **Файл:** `cards/nt-mandate.webp`
+- **Размер:** 360×540
+- **Редкость (optics):** legendary
+- **Промпт (EN):**
+  WORLD ORDER satirical political TCG illustration, editorial cartoon caricature, bold black ink outlines, flat cel-shaded color blocks, high contrast graphic satire, newspaper collage texture, exaggerated silhouette readable at thumbnail distance, hand-painted gouache-ink hybrid look, sharp readable shapes, no photorealism, no 3D CGI, parody fictional leaders only 360×540 opaque art panel filling the entire frame, pure scene illustration only, NO card frame, NO chrome, NO UI, NO nameplate, NO cost gem, NO rarity banner, NO readable text; rarity expressed only as lighting FX intensity and color temperature within the scene Legendary FX: hot wax-seal #C4A35A radiance. Visual core: eternal popular mandate as a glowing ballot sun rising over identical polling booths saying yes in unison as abstract arcs — eternal mandate satire, monumental. Global bureaucracy green #2F6B4F and gray #6B7280 with wax-seal #C4A35A accents.
+- **Negative prompt:** `photorealistic, real person likeness, celebrity face, politician photo, 3d render, cgi, unreal engine, blender, octane, anime, manga, chibi, kawaii, cute style, soft airbrush, blurry, low contrast, muddy colors, watercolor wash, sketch only, unfinished, watermark, signature, logo, brand marks, readable text, letters, numbers, typography, UI chrome, card frame, nameplate, cost gem, rarity banner, health bar, speech bubble, gore, blood, nsfw, nudity, mutilation, extra limbs, duplicate heads, cropped head, cut-off feet, busy noise background behind cutout subject, pure white studio backdrop, gradient gray void, stock photo`
+
+#### nt-multipolar
+- **Файл:** `cards/nt-multipolar.webp`
+- **Размер:** 360×540
+- **Редкость (optics):** legendary
+- **Промпт (EN):**
+  WORLD ORDER satirical political TCG illustration, editorial cartoon caricature, bold black ink outlines, flat cel-shaded color blocks, high contrast graphic satire, newspaper collage texture, exaggerated silhouette readable at thumbnail distance, hand-painted gouache-ink hybrid look, sharp readable shapes, no photorealism, no 3D CGI, parody fictional leaders only 360×540 opaque art panel filling the entire frame, pure scene illustration only, NO card frame, NO chrome, NO UI, NO nameplate, NO cost gem, NO rarity banner, NO readable text; rarity expressed only as lighting FX intensity and color temperature within the scene Legendary FX: hot multipolar gold-green blaze. Visual core: many magnetic poles orbiting one oversized red button, globe cracking into comic continents — multipolar world satire. Global bureaucracy green #2F6B4F and gray #6B7280 with wax-seal #C4A35A accents.
+- **Negative prompt:** `photorealistic, real person likeness, celebrity face, politician photo, 3d render, cgi, unreal engine, blender, octane, anime, manga, chibi, kawaii, cute style, soft airbrush, blurry, low contrast, muddy colors, watercolor wash, sketch only, unfinished, watermark, signature, logo, brand marks, readable text, letters, numbers, typography, UI chrome, card frame, nameplate, cost gem, rarity banner, health bar, speech bubble, gore, blood, nsfw, nudity, mutilation, extra limbs, duplicate heads, cropped head, cut-off feet, busy noise background behind cutout subject, pure white studio backdrop, gradient gray void, stock photo`
+
+#### nt-history
+- **Файл:** `cards/nt-history.webp`
+- **Размер:** 360×540
+- **Редкость (optics):** legendary
+- **Промпт (EN):**
+  WORLD ORDER satirical political TCG illustration, editorial cartoon caricature, bold black ink outlines, flat cel-shaded color blocks, high contrast graphic satire, newspaper collage texture, exaggerated silhouette readable at thumbnail distance, hand-painted gouache-ink hybrid look, sharp readable shapes, no photorealism, no 3D CGI, parody fictional leaders only 360×540 opaque art panel filling the entire frame, pure scene illustration only, NO card frame, NO chrome, NO UI, NO nameplate, NO cost gem, NO rarity banner, NO readable text; rarity expressed only as lighting FX intensity and color temperature within the scene Legendary FX: maximum textbook blaze. Visual core: living textbook devouring yesterday's newspaper, ink rewriting itself into blank triumphant pages, green-gray archive storm — history rewrite satire. Global bureaucracy green #2F6B4F and gray #6B7280 with wax-seal #C4A35A accents.
+- **Negative prompt:** `photorealistic, real person likeness, celebrity face, politician photo, 3d render, cgi, unreal engine, blender, octane, anime, manga, chibi, kawaii, cute style, soft airbrush, blurry, low contrast, muddy colors, watercolor wash, sketch only, unfinished, watermark, signature, logo, brand marks, readable text, letters, numbers, typography, UI chrome, card frame, nameplate, cost gem, rarity banner, health bar, speech bubble, gore, blood, nsfw, nudity, mutilation, extra limbs, duplicate heads, cropped head, cut-off feet, busy noise background behind cutout subject, pure white studio backdrop, gradient gray void, stock photo`
+
 ## Общие ассеты
 
 #### arena-default
@@ -846,10 +1041,11 @@ photorealistic, real person likeness, celebrity face, politician photo, 3d rende
 | Категория | Количество |
 |---|---|
 | Портреты | 12 |
-| Карты | 80 |
+| Карты фракций | 80 |
+| Нейтралы | 24 |
 | Арена | 1 |
 | Рубашка | 1 |
 | Fallback | 4 |
-| **Всего** | **98** |
+| **Всего** | **122** |
 
 Полные промпты + arena layers: [`PROMPTS.LOCKED.md`](./PROMPTS.LOCKED.md)

@@ -14,6 +14,7 @@ const ART_TINT: Record<string, string> = {
   "pack-ukraine": COLORS.ukraine_blue,
   "pack-mix": COLORS.gold,
   "pack-summit": COLORS.legendary,
+  "pack-neutral": COLORS.neutral_green,
 };
 
 export function PackMesh({
@@ -27,7 +28,9 @@ export function PackMesh({
   const tint =
     sku.pool.type === "character"
       ? getCharacterColor(sku.pool.characterId)
-      : (ART_TINT[sku.artKey] ?? COLORS.gold);
+      : sku.pool.type === "neutral"
+        ? COLORS.neutral_green
+        : (ART_TINT[sku.artKey] ?? COLORS.gold);
 
   useFrame(({ clock }) => {
     const m = ref.current;

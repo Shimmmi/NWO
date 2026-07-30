@@ -20,6 +20,10 @@ export const COLORS = {
   china_gold: "#FFDE00",
   ukraine_blue: "#005BBB",
   ukraine_gold: "#FFD500",
+  /** Neutral «Глобальные решения» accent (TZ v7) */
+  neutral_green: "#2F6B4F",
+  neutral_gray: "#6B7280",
+  neutral_seal: "#C4A35A",
 
   rarity_common: "#8A9BA8",
   rarity_rare: "#4A90D9",
@@ -53,6 +57,7 @@ export const CHARACTER_COLORS: Record<string, string> = {
   "vladimir-pu": COLORS.russia_red,
   "jin-shi": COLORS.china_red,
   "vlado-zelenko": COLORS.ukraine_gold,
+  neutral: COLORS.neutral_green,
 };
 
 export function getCharacterColor(characterId: string): string {

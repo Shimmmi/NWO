@@ -1,5 +1,5 @@
 import { randomInt } from "crypto";
-import { getAllCharacters, getCardById } from "@/lib/data";
+import { getAllCharacters, getCardById, getNeutralCards } from "@/lib/data";
 import type { AbilityCard } from "@/lib/game/types";
 import type { BoosterSku } from "@/lib/shop/catalog";
 
@@ -67,7 +67,10 @@ function poolCards(sku: BoosterSku): AbilityCard[] {
     const character = getAllCharacters().find((c) => c.id === characterId);
     return character?.abilityCards ?? [];
   }
-  return getAllCharacters().flatMap((c) => c.abilityCards);
+  if (sku.pool.type === "neutral") {
+    return getNeutralCards();
+  }
+  return [...getAllCharacters().flatMap((c) => c.abilityCards), ...getNeutralCards()];
 }
 
 function cardsOfRarity(

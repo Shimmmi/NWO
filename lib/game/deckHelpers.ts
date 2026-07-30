@@ -1,5 +1,5 @@
-import { getCardById, getCharacterById } from "@/lib/data";
-import { DECK_RULES } from "@/lib/game/deckRules";
+import { getCardById, getCharacterById, getNeutralCards } from "@/lib/data";
+import { DECK_RULES, getCharacterPrefix, isNeutralCardId } from "@/lib/game/deckRules";
 import type {
   CostGroup,
   DeckEntry,
@@ -29,9 +29,11 @@ export function reconstructEntries(cardIds: string[]): DeckEntry[] {
   return entries.sort((a, b) => a.card.cost - b.card.cost || a.card.name.localeCompare(b.card.name));
 }
 
+/** Faction cards for the leader plus the shared neutral pool. */
 export function getCharacterCards(characterId: string | null): AbilityCard[] {
   if (!characterId) return [];
-  return getCharacterById(characterId)?.abilityCards ?? [];
+  const faction = getCharacterById(characterId)?.abilityCards ?? [];
+  return [...faction, ...getNeutralCards()];
 }
 
 export function filterAndSortCards(
@@ -41,6 +43,7 @@ export function filterAndSortCards(
   entries: DeckEntry[],
   ownedCounts?: Map<string, number> | Record<string, number>,
   recentNew?: Set<string>,
+  characterId?: string | null,
 ): FilteredCard[] {
   const countMap = new Map(entries.map((e) => [e.card.id, e.count]));
   const total = entries.reduce((s, e) => s + e.count, 0);
@@ -50,6 +53,7 @@ export function filterAndSortCards(
     if (ownedCounts instanceof Map) return ownedCounts.get(id) ?? 0;
     return ownedCounts[id] ?? 0;
   };
+  const prefix = characterId ? getCharacterPrefix(characterId) : "";
 
   let result: FilteredCard[] = allCards.map((card) => {
     const countInDeck = countMap.get(card.id) ?? 0;
@@ -72,6 +76,12 @@ export function filterAndSortCards(
   // Owned-only when ownership map provided
   if (ownedCounts) {
     result = result.filter((f) => f.ownedCount > 0);
+  }
+
+  if (filters.pool === "neutral") {
+    result = result.filter((f) => isNeutralCardId(f.card.id));
+  } else if (filters.pool === "faction" && prefix) {
+    result = result.filter((f) => f.card.id.startsWith(prefix));
   }
 
   if (search) {

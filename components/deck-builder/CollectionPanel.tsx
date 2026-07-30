@@ -41,7 +41,7 @@ function CharacterSelectPrompt() {
         Выберите персонажа
       </p>
       <p style={{ font: `400 14px ${TYPOGRAPHY.ui}`, color: COLORS.text_secondary }}>
-        Колода собирается из карт одного героя
+        Колода: карты лидера + нейтралы «Глобальные решения»
       </p>
       <div style={{ display: "flex", flexWrap: "wrap", gap: 10, justifyContent: "center" }}>
         {characters.map((c) => (
@@ -166,8 +166,9 @@ export function CollectionPanel() {
         entries,
         ownedLoaded ? ownedCounts : undefined,
         recentNew,
+        characterId,
       ),
-    [allCards, filters, sortBy, entries, ownedCounts, ownedLoaded, recentNew],
+    [allCards, filters, sortBy, entries, ownedCounts, ownedLoaded, recentNew, characterId],
   );
 
   return (

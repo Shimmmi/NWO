@@ -12,6 +12,7 @@ const ART_TINT: Record<string, string> = {
   "pack-ukraine": COLORS.ukraine_blue,
   "pack-mix": COLORS.gold,
   "pack-summit": COLORS.legendary,
+  "pack-neutral": COLORS.neutral_green,
 };
 
 export function BoosterSkuCard({

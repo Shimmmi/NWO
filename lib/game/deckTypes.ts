@@ -22,6 +22,8 @@ export interface DeckFilters {
   search: string;
   rarity: Rarity | "all";
   type: "all" | "active" | "passive" | "ultimate";
+  /** all = faction + neutrals; faction = leader prefix only; neutral = nt-* */
+  pool: "all" | "faction" | "neutral";
   costMin: number;
   costMax: number;
   showOnlyInDeck: boolean;
@@ -54,7 +56,12 @@ export interface DeckBuilderState {
 }
 
 export type DeckError = {
-  type: "too_few" | "too_many" | "wrong_character" | "copy_limit";
+  type:
+    | "too_few"
+    | "too_many"
+    | "wrong_character"
+    | "copy_limit"
+    | "too_few_faction";
   message: string;
   cardId?: string;
 };

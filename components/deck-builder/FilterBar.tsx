@@ -156,6 +156,7 @@ export function FilterBar({
     filters.search !== "" ||
     filters.rarity !== "all" ||
     filters.type !== "all" ||
+    filters.pool !== "all" ||
     filters.costMin !== 0 ||
     filters.costMax !== 6 ||
     filters.showOnlyInDeck ||
@@ -234,6 +235,18 @@ export function FilterBar({
           <option value="active">Активные</option>
           <option value="passive">Пассивные</option>
           <option value="ultimate">Ультимейты</option>
+        </select>
+
+        <select
+          value={filters.pool}
+          onChange={(e) =>
+            onFilterChange("pool", e.target.value as DeckFilters["pool"])
+          }
+          style={selectStyle}
+        >
+          <option value="all">Все пулы</option>
+          <option value="faction">Фракция</option>
+          <option value="neutral">Нейтралы</option>
         </select>
 
         <CostRangeSlider

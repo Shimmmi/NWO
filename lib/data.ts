@@ -280,11 +280,282 @@ const CHARACTERS: Character[] = [
   },
 ];
 
+/** Neutral pool «Глобальные решения» — usable by any leader (TZ v7). */
+const NEUTRAL_CARDS = cards([
+  [
+    "nt-sovereign-net",
+    "Суверенный интернет",
+    1,
+    2,
+    "common",
+    "active",
+    "propaganda:1",
+    "Пропаганда на 1 ход: следующая карта врага с 50% шансом промахивается",
+    "Пинг 9000 мс, зато свой. Зато никто чужой не узнает, что у вас нет интернета.",
+  ],
+  [
+    "nt-state-messenger",
+    "Государственный мессенджер",
+    1,
+    2,
+    "common",
+    "active",
+    "draw:1 distraction:1",
+    "+1 карта в руку; -1 к скорости следующей карты противника",
+    "Сообщения доходят. Иногда. К нужным людям — всегда. К вам — после модерации.",
+  ],
+  [
+    "nt-import-sub",
+    "Импортозамещение",
+    0,
+    1,
+    "common",
+    "passive",
+    "cost_reduce:1 duration:1",
+    "Следующий ход: стоимость карт -1",
+    "Заменили чип на свёклу. В презентации работает идеально.",
+  ],
+  [
+    "nt-patriotic-ad",
+    "Патриотический ролик",
+    1,
+    2,
+    "common",
+    "active",
+    "strength_up:3 duration:1",
+    "+3 к силе на 1 ход",
+    "После пятнадцатого повтора за день веришь уже во что угодно. Даже в слоган.",
+  ],
+  [
+    "nt-emergency",
+    "Чрезвычайные полномочия",
+    0,
+    1,
+    "common",
+    "passive",
+    "energy:1",
+    "+1 энергии немедленно",
+    "Временно. Уже четырнадцатый год. Продлим ещё на пять — для стабильности.",
+  ],
+  [
+    "nt-loyalty",
+    "Анкета лояльности",
+    1,
+    3,
+    "common",
+    "active",
+    "distraction:1",
+    "-1 к скорости следующей карты противника",
+    "Вопрос 47: любите ли вы Родину больше, чем Wi‑Fi? Правильный ответ подчеркнут.",
+  ],
+  [
+    "nt-briefing",
+    "Брифинг без вопросов",
+    2,
+    1,
+    "common",
+    "active",
+    "speed_down:1 duration:1",
+    "Все карты противника в этом ходу теряют 1 к скорости",
+    "Вопросы принимаются письменно. Ответы публикуются никогда.",
+  ],
+  [
+    "nt-optimize",
+    "Оптимизация бюджета",
+    2,
+    1,
+    "common",
+    "active",
+    "heal:10 sanction:1",
+    "Восстанавливает 10 HP; противник не получает +1 энергии в след. ходу",
+    "Срезали больницы, зато фуршет на форуме укрепился. Приоритеты расставлены.",
+  ],
+  [
+    "nt-parallel",
+    "Параллельный импорт",
+    2,
+    2,
+    "rare",
+    "active",
+    "draw:2",
+    "+2 карты в руку",
+    "Официально не ввозили. Коробки просто сами появились на складе.",
+  ],
+  [
+    "nt-foreign-agent",
+    "Иностранный агент",
+    3,
+    1,
+    "rare",
+    "active",
+    "block_hand:1",
+    "Блокирует одну случайную карту в руке противника",
+    "Этикетка больше текста. Шрифт специально нечитаемый — для прозрачности.",
+  ],
+  [
+    "nt-cbdc",
+    "Цифровой суверенитет",
+    3,
+    2,
+    "rare",
+    "active",
+    "energy_steal:1",
+    "Steal 1 энергии у противника",
+    "Ваши деньги теперь удобнее. Особенно отслеживать. Особенно вам не говорить.",
+  ],
+  [
+    "nt-youth-camp",
+    "Патриотический лагерь",
+    2,
+    1,
+    "rare",
+    "active",
+    "armor_up:10 duration:1",
+    "+10 к броне на 1 ход",
+    "Утром — зарядка, днём — марш, вечером — эссе «Почему я люблю цензуру».",
+  ],
+  [
+    "nt-exit-ban",
+    "Запрет на выезд",
+    3,
+    1,
+    "rare",
+    "active",
+    "sanction:1 duration:1",
+    "Противник не восстанавливает +1 энергии в следующем ходу",
+    "Граница открыта. Для правильных людей. Вы пока не в списке правильных.",
+  ],
+  [
+    "nt-truth-min",
+    "Министерство правды",
+    2,
+    3,
+    "rare",
+    "active",
+    "clear_effects",
+    "Отменяет один активный эффект у противника",
+    "Факты обновлены до версии 3.0. Предыдущие версии признаны фейком.",
+  ],
+  [
+    "nt-sanction-proof",
+    "Санкционоустойчивость",
+    3,
+    0,
+    "rare",
+    "active",
+    "block:40",
+    "Блокирует 40 ед. урона на этот ход",
+    "Запас сала, PDF с инструкциями и гордость. Особенно гордость.",
+  ],
+  [
+    "nt-nationalize",
+    "Национализация",
+    3,
+    2,
+    "rare",
+    "active",
+    "steal_card",
+    "Steal 1 случайную карту из руки противника",
+    "Всё ваше теперь наше. Временно. Навсегда. Временно навсегда.",
+  ],
+  [
+    "nt-martial",
+    "Военное положение",
+    4,
+    0,
+    "epic",
+    "active",
+    "invulnerability duration:1",
+    "Неуязвимость на 1 фазу",
+    "Для вашей безопасности. Срок: до особого распоряжения. Особое распоряжение утеряно.",
+  ],
+  [
+    "nt-referendum",
+    "Референдум с предсказуемым итогом",
+    4,
+    2,
+    "epic",
+    "active",
+    "damage:35 propaganda:1",
+    "35 ед. урона + пропаганда на 1 ход",
+    "97,3% «за». Остальные 2,7% ещё заполняют бюллетень под присмотром.",
+  ],
+  [
+    "nt-brain-tax",
+    "Налог на утечку мозгов",
+    4,
+    2,
+    "epic",
+    "active",
+    "discard_hand:1 energy:2",
+    "Сбрасывает 1 случайную карту врага; вы получаете +2 энергии",
+    "Уехали? Заплатите. Остались? Тоже заплатите. Логика безупречна.",
+  ],
+  [
+    "nt-panopticon",
+    "Всевидящее око",
+    4,
+    1,
+    "epic",
+    "active",
+    "block_hand:1 distraction:1",
+    "Блокирует 1 карту в руке врага; -1 к скорости его следующей карты",
+    "Камера не следит. Камера заботится. Улыбнитесь для протокола.",
+  ],
+  [
+    "nt-sov-ai",
+    "Суверенный ИИ",
+    3,
+    3,
+    "epic",
+    "active",
+    "copy_last",
+    "Копирует эффект последней карты противника",
+    "Обучен только на одобренных мемах. Галлюцинирует исключительно патриотично.",
+  ],
+  [
+    "nt-mandate",
+    "Вечный мандат народа",
+    5,
+    1,
+    "legendary",
+    "ultimate",
+    "heal:45 energy:2",
+    "Восстанавливает 45 HP + +2 энергии немедленно",
+    "Народ сказал «да» на всех участках одновременно. Удивительно дружный народ.",
+  ],
+  [
+    "nt-multipolar",
+    "Многополярный мир",
+    5,
+    1,
+    "legendary",
+    "ultimate",
+    "damage:55 sanction:1 duration:1",
+    "55 ед. урона; противник не получает +1 энергии в след. ходу",
+    "Полюсов много. Кнопка — одна. Не та, о которой вы подумали. Или та.",
+  ],
+  [
+    "nt-history",
+    "Новый учебник истории",
+    5,
+    2,
+    "legendary",
+    "ultimate",
+    "clear_effects damage:40",
+    "Все активные эффекты врага отменяются + 40 ед. урона",
+    "Вчерашние события отредактированы задним числом. Завтрашние — уже в печати.",
+  ],
+]);
+
 const CARD_INDEX = new Map<string, AbilityCard>();
 for (const character of CHARACTERS) {
   for (const card of character.abilityCards) {
     CARD_INDEX.set(card.id, card);
   }
+}
+for (const card of NEUTRAL_CARDS) {
+  CARD_INDEX.set(card.id, card);
 }
 
 export function getCharacterById(id: string): Character | undefined {
@@ -305,9 +576,23 @@ for (const character of CHARACTERS) {
     CARD_OWNER.set(card.id, character.id);
   }
 }
+for (const card of NEUTRAL_CARDS) {
+  CARD_OWNER.set(card.id, "neutral");
+}
 
 export function getCharacterIdForCard(cardId: string): string | undefined {
   return CARD_OWNER.get(cardId);
+}
+
+export function getNeutralCards(): AbilityCard[] {
+  return NEUTRAL_CARDS.map((c) => ({ ...c }));
+}
+
+export function getAllAbilityCards(): AbilityCard[] {
+  return [
+    ...CHARACTERS.flatMap((c) => c.abilityCards),
+    ...NEUTRAL_CARDS,
+  ];
 }
 
 export function getDefaultDeck(characterId: string): AbilityCard[] {
@@ -320,4 +605,11 @@ export function getFormStats(characterId: string): FormStats[] {
   return FORM_STATS[characterId] ?? [];
 }
 
-export { CHARACTERS, DONALD_RUMPF_CARDS, VLADIMIR_PU_CARDS, JIN_SHI_CARDS, VLADO_ZELENKO_CARDS };
+export {
+  CHARACTERS,
+  DONALD_RUMPF_CARDS,
+  VLADIMIR_PU_CARDS,
+  JIN_SHI_CARDS,
+  VLADO_ZELENKO_CARDS,
+  NEUTRAL_CARDS,
+};

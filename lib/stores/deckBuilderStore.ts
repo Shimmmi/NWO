@@ -23,6 +23,7 @@ const DEFAULT_FILTERS: DeckFilters = {
   search: "",
   rarity: "all",
   type: "all",
+  pool: "all",
   costMin: 0,
   costMax: 6,
   showOnlyInDeck: false,

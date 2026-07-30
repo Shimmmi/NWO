@@ -24,6 +24,10 @@ export const DECK_RULES = {
   },
 } as const;
 
+export const NEUTRAL_PREFIX = "nt-";
+export const NEUTRAL_OWNER_ID = "neutral";
+export const MIN_FACTION_CARDS = 12;
+
 export const CHARACTER_CARD_PREFIX: Record<string, string> = {
   "donald-rumpf": "dr-",
   "vladimir-pu": "vp-",
@@ -33,6 +37,29 @@ export const CHARACTER_CARD_PREFIX: Record<string, string> = {
 
 export function getCharacterPrefix(characterId: string): string {
   return CHARACTER_CARD_PREFIX[characterId] ?? "";
+}
+
+export function isNeutralCardId(cardId: string): boolean {
+  return cardId.startsWith(NEUTRAL_PREFIX);
+}
+
+/** Card is legal in a leader deck if it is that faction OR a neutral. */
+export function isLegalCardForCharacter(
+  cardId: string,
+  characterId: string,
+): boolean {
+  if (isNeutralCardId(cardId)) return true;
+  const prefix = CHARACTER_CARD_PREFIX[characterId];
+  return Boolean(prefix && cardId.startsWith(prefix));
+}
+
+export function countFactionCards(
+  cardIds: string[],
+  characterId: string,
+): number {
+  const prefix = CHARACTER_CARD_PREFIX[characterId] ?? "";
+  if (!prefix) return 0;
+  return cardIds.filter((id) => id.startsWith(prefix)).length;
 }
 
 export function copiesWord(n: number): string {

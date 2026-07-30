@@ -1,7 +1,9 @@
 import {
   DECK_RULES,
+  MIN_FACTION_CARDS,
   copiesWord,
   getCharacterPrefix,
+  isLegalCardForCharacter,
 } from "@/lib/game/deckRules";
 import type {
   DeckEntry,
@@ -43,15 +45,26 @@ export function validateDeck(
   }
 
   if (characterId) {
+    const illegal = cards.filter(
+      (e) => !isLegalCardForCharacter(e.card.id, characterId),
+    );
+    if (illegal.length > 0) {
+      errors.push({
+        type: "wrong_character",
+        message: `${illegal.length} карт не принадлежат этому персонажу и не нейтральны`,
+      });
+    }
+
     const prefix = getCharacterPrefix(characterId);
-    if (prefix) {
-      const wrongChar = cards.filter((e) => !e.card.id.startsWith(prefix));
-      if (wrongChar.length > 0) {
-        errors.push({
-          type: "wrong_character",
-          message: `${wrongChar.length} карт не принадлежат этому персонажу`,
-        });
-      }
+    const factionCount = cards.reduce((sum, e) => {
+      return sum + (prefix && e.card.id.startsWith(prefix) ? e.count : 0);
+    }, 0);
+
+    if (factionCount < MIN_FACTION_CARDS) {
+      errors.push({
+        type: "too_few_faction",
+        message: `Карт своего лидера: ${factionCount} — нужно минимум ${MIN_FACTION_CARDS}`,
+      });
     }
   }
 
@@ -122,15 +135,19 @@ export function validateCardIds(
     return false;
   }
 
-  const prefix = getCharacterPrefix(characterId);
   const counts = new Map<string, number>();
+  let factionCount = 0;
+  const prefix = getCharacterPrefix(characterId);
 
   for (const id of cardIds) {
-    if (prefix && !id.startsWith(prefix)) return false;
+    if (!isLegalCardForCharacter(id, characterId)) return false;
     const card = findCard(id);
     if (!card) return false;
     counts.set(id, (counts.get(id) ?? 0) + 1);
+    if (prefix && id.startsWith(prefix)) factionCount += 1;
   }
+
+  if (factionCount < MIN_FACTION_CARDS) return false;
 
   for (const [id, count] of counts) {
     const card = findCard(id);

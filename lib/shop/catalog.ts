@@ -4,11 +4,13 @@ export type BoosterSkuId =
   | "booster-shi-standard"
   | "booster-zelenko-standard"
   | "booster-mix-standard"
-  | "booster-mix-premium";
+  | "booster-mix-premium"
+  | "booster-neutral-standard";
 
 export type BoosterPool =
   | { type: "character"; characterId: string }
-  | { type: "mix" };
+  | { type: "mix" }
+  | { type: "neutral" };
 
 export interface BoosterSku {
   id: BoosterSkuId;
@@ -63,9 +65,19 @@ export const BOOSTER_CATALOG: BoosterSku[] = [
     legendaryWeightBonus: 0,
   },
   {
+    id: "booster-neutral-standard",
+    name: "Global Resolutions Pack",
+    description: "4C + 2R + 1E/L from Neutral pool",
+    priceCredits: 110,
+    pool: { type: "neutral" },
+    artKey: "pack-neutral",
+    bonusChanceMultiplier: 1,
+    legendaryWeightBonus: 0,
+  },
+  {
     id: "booster-mix-standard",
     name: "World Order Mix",
-    description: "4C + 2R + 1E/L from any leader",
+    description: "4C + 2R + 1E/L from any leader + neutrals",
     priceCredits: 120,
     pool: { type: "mix" },
     artKey: "pack-mix",

@@ -1,4 +1,4 @@
-import { getAllCharacters } from "@/lib/data";
+import { getAllCharacters, getNeutralCards } from "@/lib/data";
 import { ECONOMY } from "@/lib/shop/economy";
 
 export function buildStarterGrants(): Array<{ cardId: string; count: number }> {
@@ -10,6 +10,11 @@ export function buildStarterGrants(): Array<{ cardId: string; count: number }> {
       } else if (card.rarity === "rare") {
         grants.push({ cardId: card.id, count: 1 });
       }
+    }
+  }
+  for (const card of getNeutralCards()) {
+    if (card.rarity === "common") {
+      grants.push({ cardId: card.id, count: 1 });
     }
   }
   return grants;

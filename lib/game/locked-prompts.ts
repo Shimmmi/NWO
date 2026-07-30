@@ -15,7 +15,12 @@ export const CARD_TECH =
 export const MASTER_NEGATIVE =
   "photorealistic, real person likeness, celebrity face, politician photo, 3d render, cgi, unreal engine, blender, octane, anime, manga, chibi, kawaii, cute style, soft airbrush, blurry, low contrast, muddy colors, watercolor wash, sketch only, unfinished, watermark, signature, logo, brand marks, readable text, letters, numbers, typography, UI chrome, card frame, nameplate, cost gem, rarity banner, health bar, speech bubble, gore, blood, nsfw, nudity, mutilation, extra limbs, duplicate heads, cropped head, cut-off feet, busy noise background behind cutout subject, pure white studio backdrop, gradient gray void, stock photo";
 
-export type FactionId = "donald-rumpf" | "vladimir-pu" | "jin-shi" | "vlado-zelenko";
+export type FactionId =
+  | "donald-rumpf"
+  | "vladimir-pu"
+  | "jin-shi"
+  | "vlado-zelenko"
+  | "neutral";
 
 export const FACTION_PHRASE: Record<FactionId, string> = {
   "donald-rumpf":
@@ -25,6 +30,8 @@ export const FACTION_PHRASE: Record<FactionId, string> = {
   "jin-shi": "China crimson #DE2910 and industrial gold #FFDE00",
   "vlado-zelenko":
     "Ukraine blue #005BBB and gold #FFD500 under harsh spotlight",
+  neutral:
+    "Global bureaucracy green #2F6B4F and gray #6B7280 with wax-seal #C4A35A accents",
 };
 
 export const FACTION_PALETTE: Record<
@@ -54,6 +61,12 @@ export const FACTION_PALETTE: Record<
     secondary: "#FFD500",
     accent: "#FFD500",
     dark: "#001a33",
+  },
+  neutral: {
+    primary: "#2F6B4F",
+    secondary: "#6B7280",
+    accent: "#C4A35A",
+    dark: "#0a1610",
   },
 };
 
@@ -272,6 +285,33 @@ export const VLADO_CARDS: LockedAsset[] = [
   card("vz-freedom", "vlado-zelenko", "legendary", "Legendary FX: hot orange-gold sunrise radiance, brightest contrast. Visual scene: shattered iron chains exploding into blue-gold wings, sunrise flare behind, swarm of blank paper rectangles rocketing forward as liberated pamphlets with motion chevrons — will-to-victory satire, no people, no slogans."),
 ];
 
+export const NEUTRAL_CARDS: LockedAsset[] = [
+  card("nt-sovereign-net", "neutral", "common", "Common FX: flat bureaucratic lamp. Visual core: cartoon globe trapped in a glass jar with oversized padlock, ethernet cables as prison bars, gray stamp blobs, green #2F6B4F seal glow — sovereign internet satire, no readable text."),
+  card("nt-state-messenger", "neutral", "common", "Common FX: soft desk lamp. Visual core: official chat-bubble courier bag stamped with blank wax seal, gray-suited stick courier silhouette delivering sealed envelopes, green bureaucratic aura — state messenger satire."),
+  card("nt-import-sub", "neutral", "common", "Common FX: modest workshop light. Visual core: high-tech microchip replaced by a proud beetroot with USB ports and ribbon cable leaves, presentation podium silhouette, green-gray factory backdrop — import substitution satire."),
+  card("nt-patriotic-ad", "neutral", "common", "Common FX: TV glow. Visual core: looping billboard stack of identical blank patriotic posters, megaphone raining confetti slogans as abstract shapes, hypnotic green rings — patriotic ad satire, no letters."),
+  card("nt-emergency", "neutral", "common", "Common FX: emergency amber blink. Visual core: giant temporary stamp hovering forever above city hall, calendar pages stacked to the ceiling, green wax drip — emergency powers satire."),
+  card("nt-loyalty", "neutral", "common", "Common FX: clipboard spotlight. Visual core: endless questionnaire scroll with checkboxes, Wi-Fi symbol crossed by rubber stamp, anxious pencil silhouette — loyalty form satire, no readable questions."),
+  card("nt-briefing", "neutral", "common", "Common FX: podium cold light. Visual core: press podium with microphones taped shut, empty question cards falling into a shredder, gray curtains — briefing without questions satire."),
+  card("nt-optimize", "neutral", "common", "Common FX: ledger green lamp. Visual core: budget scissors cutting a hospital cross while a banquet table glows gold, scales tipping toward cake — budget optimization satire."),
+  card("nt-parallel", "neutral", "rare", "Rare FX: cooler warehouse rim. Visual core: sealed crates mysteriously appearing on a customs dock, parallel arrows sneaking under a barrier, green-gray fog — parallel import satire."),
+  card("nt-foreign-agent", "neutral", "rare", "Rare FX: harsh stamp glow. Visual core: tiny document crushed under a gigantic label sticker bigger than the paper, unreadably dense fine-print texture (no letters), green seal — foreign agent satire."),
+  card("nt-cbdc", "neutral", "rare", "Rare FX: digital cyan rim on green base. Visual core: coin transforming into a tracking QR-orb watched by a friendly CCTV eye, ledger chains — digital sovereignty satire."),
+  card("nt-youth-camp", "neutral", "rare", "Rare FX: morning camp light. Visual core: marching boots and flags around a drill square, essay notebooks stacked into a fortress, green armor aura — patriotic camp satire, no faces."),
+  card("nt-exit-ban", "neutral", "rare", "Rare FX: border cold light. Visual core: airport gate with velvet rope and a smiling closed stamp, passport melting into a house key — exit ban satire."),
+  card("nt-truth-min", "neutral", "rare", "Rare FX: archive violet-green mix. Visual core: ministry filing cabinet rewriting yesterday's newspaper into blank white sheets, version stamp 3.0 as abstract glyph blob — ministry of truth satire."),
+  card("nt-sanction-proof", "neutral", "rare", "Rare FX: bunker protective bloom. Visual core: pantry fortress of jars and PDF folders forming a shield wall, proud green force field — sanction resilience satire."),
+  card("nt-nationalize", "neutral", "rare", "Rare FX: vault gold-green kick. Visual core: factory key swapping hands into a state seal fist, stolen card silhouette flying into a green briefcase — nationalization satire."),
+  card("nt-martial", "neutral", "epic", "Epic FX: violet veins in green stamp. Visual core: city square under a colossal TEMPORARY rubber stamp, pigeons in tiny helmets, force dome — martial law satire."),
+  card("nt-referendum", "neutral", "epic", "Epic FX: dramatic ballot backlight. Visual core: ballot boxes overflowing with identical checkmarks, 97% pie chart as abstract wedges, supervised pencil silhouettes — predictable referendum satire."),
+  card("nt-brain-tax", "neutral", "epic", "Epic FX: violet suitcase glow. Visual core: brains-as-luggage taxed at a customs desk, coins siphoning from departing silhouettes into a state coffer — brain drain tax satire."),
+  card("nt-panopticon", "neutral", "epic", "Epic FX: many-eyed violet rim. Visual core: all-seeing CCTV flower of cameras blooming over a plaza, caring green smile on lenses, blocked playing cards freezing mid-air — panopticon satire."),
+  card("nt-sov-ai", "neutral", "epic", "Epic FX: violet neural sparks. Visual core: patriotic robot head photocopies rival aura into approved meme tiles, green circuit halo — sovereign AI satire, no readable memes."),
+  card("nt-mandate", "neutral", "legendary", "Legendary FX: hot wax-seal #C4A35A radiance. Visual core: eternal popular mandate as a glowing ballot sun rising over identical polling booths saying yes in unison as abstract arcs — eternal mandate satire, monumental."),
+  card("nt-multipolar", "neutral", "legendary", "Legendary FX: hot multipolar gold-green blaze. Visual core: many magnetic poles orbiting one oversized red button, globe cracking into comic continents — multipolar world satire."),
+  card("nt-history", "neutral", "legendary", "Legendary FX: maximum textbook blaze. Visual core: living textbook devouring yesterday's newspaper, ink rewriting itself into blank triumphant pages, green-gray archive storm — history rewrite satire."),
+];
+
 export const SHARED_ASSETS: LockedAsset[] = [
   {
     id: "arena-default",
@@ -370,6 +410,7 @@ export function getAllLockedAssets(includeArenaLayers = true): LockedAsset[] {
     ...VLADIMIR_CARDS,
     ...JIN_CARDS,
     ...VLADO_CARDS,
+    ...NEUTRAL_CARDS,
     ...SHARED_ASSETS,
     ...(includeArenaLayers ? ARENA_LAYERS : []),
   ];

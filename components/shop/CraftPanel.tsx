@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { toast } from "sonner";
-import { getCharacterById, getCardById } from "@/lib/data";
+import { getCharacterById, getCardById, getNeutralCards } from "@/lib/data";
 import { apiPath } from "@/lib/constants";
 import { COLORS, TYPOGRAPHY } from "@/lib/design/tokens";
 import {
@@ -12,27 +12,33 @@ import {
 } from "@/lib/shop/craft";
 import { useCollectionStore } from "@/lib/stores/collectionStore";
 
+type CraftPool = "faction" | "neutral";
+
 export function CraftPanel({ characterId }: { characterId: string | null }) {
   const ownedCounts = useCollectionStore((s) => s.ownedCounts);
   const load = useCollectionStore((s) => s.load);
+  const [pool, setPool] = useState<CraftPool>("faction");
   const [fromRarity, setFromRarity] = useState<CraftableFrom>("common");
   const [selected, setSelected] = useState<string[]>([]);
   const [targetId, setTargetId] = useState<string>("");
   const [busy, setBusy] = useState(false);
 
   const character = characterId ? getCharacterById(characterId) : null;
+  const poolCards = useMemo(() => {
+    if (pool === "neutral") return getNeutralCards();
+    return character?.abilityCards ?? [];
+  }, [character, pool]);
+
   const dustPool = useMemo(() => {
-    if (!character) return [];
-    return character.abilityCards.filter(
+    return poolCards.filter(
       (c) => c.rarity === fromRarity && (ownedCounts[c.id] ?? 0) > 0,
     );
-  }, [character, fromRarity, ownedCounts]);
+  }, [poolCards, fromRarity, ownedCounts]);
 
   const targets = useMemo(() => {
-    if (!character) return [];
     const next = CRAFT_NEXT[fromRarity];
-    return character.abilityCards.filter((c) => c.rarity === next);
-  }, [character, fromRarity]);
+    return poolCards.filter((c) => c.rarity === next);
+  }, [poolCards, fromRarity]);
 
   const toggle = (cardId: string) => {
     setSelected((prev) => {
@@ -41,7 +47,6 @@ export function CraftPanel({ characterId }: { characterId: string | null }) {
       if (used < owned && prev.length < CRAFT_COST) {
         return [...prev, cardId];
       }
-      // remove one instance
       const idx = prev.lastIndexOf(cardId);
       if (idx >= 0) {
         const next = [...prev];
@@ -112,8 +117,43 @@ export function CraftPanel({ characterId }: { characterId: string | null }) {
           marginBottom: 12,
         }}
       >
-        4 карты одной редкости → 1 карта следующей (одного лидера)
+        4 карты одной редкости → 1 карта следующей (один пул: фракция или
+        нейтралы)
       </p>
+
+      <div style={{ display: "flex", gap: 8, marginBottom: 14 }}>
+        {(
+          [
+            { id: "faction" as const, label: "Фракция" },
+            { id: "neutral" as const, label: "Нейтралы" },
+          ] as const
+        ).map((opt) => (
+          <button
+            key={opt.id}
+            type="button"
+            onClick={() => {
+              setPool(opt.id);
+              setSelected([]);
+              setTargetId("");
+            }}
+            style={{
+              padding: "6px 10px",
+              borderRadius: 8,
+              border:
+                pool === opt.id
+                  ? `1px solid ${COLORS.neutral_green}`
+                  : "1px solid rgba(255,255,255,0.1)",
+              background:
+                pool === opt.id ? `${COLORS.neutral_green}33` : "transparent",
+              color: COLORS.text_primary,
+              font: `600 12px ${TYPOGRAPHY.ui}`,
+              cursor: "pointer",
+            }}
+          >
+            {opt.label}
+          </button>
+        ))}
+      </div>
 
       <div style={{ display: "flex", gap: 8, marginBottom: 14 }}>
         {(["common", "rare", "epic"] as CraftableFrom[]).map((r) => (

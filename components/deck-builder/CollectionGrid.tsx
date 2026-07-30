@@ -5,6 +5,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { DECK_RARITY_CONFIG } from "@/components/deck-builder/constants";
 import { COLORS, TYPOGRAPHY } from "@/lib/design/tokens";
 import { getCardArtUrl, getCardFallbackUrl } from "@/lib/game/art";
+import { isNeutralCardId } from "@/lib/game/deckRules";
 import type { FilteredCard } from "@/lib/game/deckTypes";
 import type { AbilityCard } from "@/lib/game/types";
 import { useDeckBuilderStore } from "@/lib/stores/deckBuilderStore";
@@ -126,6 +127,24 @@ function CollectionCardItem({
               МАХ
             </span>
           </div>
+        )}
+        {isNeutralCardId(card.id) && (
+          <span
+            style={{
+              position: "absolute",
+              top: 5,
+              left: 30,
+              padding: "2px 5px",
+              borderRadius: 4,
+              background: "rgba(47,107,79,0.92)",
+              color: "#E8F5EE",
+              font: `700 8px ${TYPOGRAPHY.ui}`,
+              letterSpacing: "0.04em",
+              zIndex: 2,
+            }}
+          >
+            Нейтрал
+          </span>
         )}
         {isNew && (
           <span

@@ -4,7 +4,12 @@ import { useMemo } from "react";
 import { motion } from "framer-motion";
 import { DECK_RARITY_CONFIG } from "@/components/deck-builder/constants";
 import { COLORS, TYPOGRAPHY } from "@/lib/design/tokens";
-import { DECK_RULES } from "@/lib/game/deckRules";
+import {
+  DECK_RULES,
+  MIN_FACTION_CARDS,
+  getCharacterPrefix,
+  isNeutralCardId,
+} from "@/lib/game/deckRules";
 import type { AbilityCard } from "@/lib/game/types";
 import { useDeckBuilderStore } from "@/lib/stores/deckBuilderStore";
 
@@ -74,12 +79,24 @@ function StatBlock({
 
 export function StatsPanel() {
   const entries = useDeckBuilderStore((s) => s.currentDeck.entries);
+  const characterId = useDeckBuilderStore((s) => s.characterId);
   const getValidation = useDeckBuilderStore((s) => s.getValidation);
   const validation = getValidation();
 
   const allCards = useMemo(
     () => entries.flatMap((e) => Array(e.count).fill(e.card) as AbilityCard[]),
     [entries],
+  );
+
+  const factionCount = useMemo(() => {
+    const prefix = characterId ? getCharacterPrefix(characterId) : "";
+    if (!prefix) return 0;
+    return allCards.filter((c) => c.id.startsWith(prefix)).length;
+  }, [allCards, characterId]);
+
+  const neutralCount = useMemo(
+    () => allCards.filter((c) => isNeutralCardId(c.id)).length,
+    [allCards],
   );
 
   const curveCounts = useMemo(() => {
@@ -304,6 +321,12 @@ export function StatsPanel() {
           />
           <StatBlock label="Уникальных" value={entries.length} />
           <StatBlock
+            label="Фракция"
+            value={factionCount}
+            max={MIN_FACTION_CARDS}
+          />
+          <StatBlock label="Нейтралы" value={neutralCount} />
+          <StatBlock
             label="Атакующих"
             value={allCards.filter((c) => c.type === "active").length}
           />
@@ -317,6 +340,19 @@ export function StatsPanel() {
             }
           />
         </div>
+        {factionCount < MIN_FACTION_CARDS && validation.totalCards > 0 && (
+          <p
+            style={{
+              marginTop: 8,
+              font: `400 12px ${TYPOGRAPHY.ui}`,
+              color: "#FF8A80",
+              lineHeight: 1.4,
+            }}
+          >
+            Нужно минимум {MIN_FACTION_CARDS} карт своего лидера (сейчас{" "}
+            {factionCount}).
+          </p>
+        )}
       </div>
 
       {validation.warnings.length > 0 && (

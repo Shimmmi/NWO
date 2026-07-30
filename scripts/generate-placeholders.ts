@@ -1,7 +1,7 @@
 import { readdir, readFile, mkdir, stat } from "fs/promises";
 import path from "path";
 import sharp from "sharp";
-import { getAllCharacters } from "../lib/data";
+import { getAllCharacters, getNeutralCards } from "../lib/data";
 import type { AbilityCard } from "../lib/game/types";
 
 const ROOT = path.join(process.cwd(), "public", "placeholders");
@@ -152,6 +152,16 @@ async function generateCardPlaceholders(): Promise<number> {
       if (await svgToWebp(Buffer.from(svg), webpPath)) {
         count++;
       }
+    }
+  }
+
+  for (const card of getNeutralCards()) {
+    if (seen.has(card.id)) continue;
+    seen.add(card.id);
+    const svg = buildCardSvg(card);
+    const webpPath = path.join(cardsDir, `${card.id}.webp`);
+    if (await svgToWebp(Buffer.from(svg), webpPath)) {
+      count++;
     }
   }
 
