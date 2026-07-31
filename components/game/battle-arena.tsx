@@ -201,6 +201,7 @@ export function BattleArena({
           <PlayedCardsZone
             cards={playedCards}
             highlightCardName={activeCardName}
+            myPlayerNum={myPlayerNum}
           />
         </div>
       </div>

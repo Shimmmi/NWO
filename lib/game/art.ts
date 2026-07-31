@@ -30,6 +30,23 @@ export function getCharacterPortraitUrl(characterId: string, form: number): stri
   return assetPath(`/placeholders/characters/${characterId}-form${form}.webp`);
 }
 
+const CHARACTER_FLAG_CODE: Record<string, string> = {
+  "donald-rumpf": "us",
+  "vladimir-pu": "ru",
+  "jin-shi": "cn",
+  "vlado-zelenko": "ua",
+  us: "us",
+  ru: "ru",
+  cn: "cn",
+  ua: "ua",
+};
+
+/** Stylized country flag for character-select thumbnails (TZ v8). */
+export function getCountryFlagUrl(characterIdOrCode: string): string {
+  const code = CHARACTER_FLAG_CODE[characterIdOrCode] ?? "us";
+  return assetPath(`/placeholders/flags/${code}.svg`);
+}
+
 export function getCardArtUrl(cardId: string, _rarity: AbilityCard["rarity"]): string {
   const baseId = normalizeCardArtId(cardId);
   return assetPath(`/placeholders/cards/${baseId}.webp`);

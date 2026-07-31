@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { COLORS, getCharacterColor } from "@/lib/design/tokens";
 import { getAllCharacters } from "@/lib/data";
-import { getCharacterPortraitUrl } from "@/lib/game/art";
+import { getCharacterPortraitUrl, getCountryFlagUrl } from "@/lib/game/art";
 import { FORM_STATS } from "@/lib/game/types";
 import { cn } from "@/lib/utils";
 
@@ -90,10 +90,10 @@ export function CharacterSelect({ onSelect }: CharacterSelectProps) {
                   : "none",
             }}
           >
-            <div className="relative h-14 w-14 overflow-hidden rounded-md">
+            <div className="relative h-10 w-14 overflow-hidden rounded-md border border-white/15">
               <Image
-                src={getCharacterPortraitUrl(char.id, 1)}
-                alt={char.name}
+                src={getCountryFlagUrl(char.id)}
+                alt={char.country}
                 fill
                 className="object-cover"
                 unoptimized

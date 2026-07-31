@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { AbilityCardView } from "@/components/game/ability-card-view";
+import { CardPreviewPopover } from "@/components/game/card-preview-popover";
 import { getCardById } from "@/lib/data";
 import { getCardBackUrl } from "@/lib/game/art";
 import { COLORS, TYPOGRAPHY } from "@/lib/design/tokens";
@@ -31,7 +32,7 @@ function OpeningFlipCard({
   const card = getCardById(cardId);
   const backUrl = getCardBackUrl();
 
-  return (
+  const flip = (
     <motion.div
       layout
       animate={{
@@ -43,7 +44,8 @@ function OpeningFlipCard({
         height: 248,
         perspective: 1000,
         flexShrink: 0,
-        pointerEvents: "none",
+        pointerEvents: revealed ? "auto" : "none",
+        cursor: revealed ? "pointer" : "default",
       }}
     >
       <div
@@ -58,7 +60,6 @@ function OpeningFlipCard({
           borderRadius: 12,
         }}
       >
-        {/* Face */}
         <div
           style={{
             position: "absolute",
@@ -103,7 +104,6 @@ function OpeningFlipCard({
           )}
         </div>
 
-        {/* Back (рубашка) */}
         <div
           style={{
             position: "absolute",
@@ -120,6 +120,16 @@ function OpeningFlipCard({
       </div>
     </motion.div>
   );
+
+  if (revealed && card) {
+    return (
+      <CardPreviewPopover card={card} delayMs={150}>
+        {flip}
+      </CardPreviewPopover>
+    );
+  }
+
+  return flip;
 }
 
 export function OpeningCardFan({
@@ -144,6 +154,7 @@ export function OpeningCardFan({
         padding: "24px 16px 100px",
         boxSizing: "border-box",
         background: `radial-gradient(circle at 50% 40%, ${COLORS.gold}18, transparent 55%)`,
+        pointerEvents: "none",
       }}
     >
       <div
@@ -154,6 +165,7 @@ export function OpeningCardFan({
           justifyContent: "center",
           alignItems: "flex-end",
           maxWidth: 1100,
+          pointerEvents: "auto",
         }}
       >
         {result.cards.map((c, i) => (

@@ -16,6 +16,7 @@ interface ShopState {
   opening: PackOpenResult | null;
   openingSku: BoosterSku | null;
   error: string | null;
+  dailyAvailable: boolean;
   loadCatalog: () => Promise<void>;
   loadPacks: () => Promise<void>;
   buyAndOpen: (skuId: string) => Promise<void>;
@@ -38,6 +39,7 @@ export const useShopStore = create<ShopState>((set, get) => ({
   opening: null,
   openingSku: null,
   error: null,
+  dailyAvailable: false,
 
   setCredits: (n) => set({ credits: n }),
 
@@ -53,6 +55,7 @@ export const useShopStore = create<ShopState>((set, get) => ({
         skus: data.skus ?? [],
         credits: data.credits ?? 0,
         pity: data.pity ?? 0,
+        dailyAvailable: Boolean(data.dailyAvailable),
         loading: false,
       });
     } catch {
@@ -117,7 +120,9 @@ export const useShopStore = create<ShopState>((set, get) => ({
       });
       const data = await res.json();
       if (data.credits != null) set({ credits: data.credits });
-      return Boolean(data.granted);
+      const granted = Boolean(data.granted);
+      if (granted) set({ dailyAvailable: false });
+      return granted;
     } catch {
       return false;
     }

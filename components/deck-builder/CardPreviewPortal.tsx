@@ -5,7 +5,7 @@ import { createPortal } from "react-dom";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { useTexture } from "@react-three/drei";
 import { AnimatePresence, motion } from "framer-motion";
-import { Zap } from "lucide-react";
+import { Gauge } from "lucide-react";
 import { Suspense, useRef } from "react";
 import * as THREE from "three";
 import {
@@ -56,7 +56,8 @@ function RotatingCardArt({
   return (
     <>
       <mesh ref={meshRef}>
-        <planeGeometry args={[2.4, 1.6]} />
+        {/* Portrait 2:3 plane — fills the preview canvas */}
+        <planeGeometry args={[1.6, 2.4]} />
         <meshBasicMaterial map={texture} transparent />
       </mesh>
       <pointLight color={rarityColor} intensity={2} distance={3} />
@@ -94,6 +95,53 @@ function CardArtFallback({
   );
 }
 
+function Gem({
+  value,
+  side,
+  icon,
+}: {
+  value: number;
+  side: "left" | "right";
+  icon?: "cost" | "speed";
+}) {
+  const isCost = icon !== "speed";
+  return (
+    <div
+      style={{
+        position: "absolute",
+        top: 10,
+        [side]: 10,
+        width: 36,
+        height: 36,
+        borderRadius: "50%",
+        background: isCost
+          ? "radial-gradient(circle at 35% 35%, #FFE566, #CC8800)"
+          : "radial-gradient(circle at 35% 35%, #7DD3FC, #0369A1)",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        font: `900 18px ${TYPOGRAPHY.ui}`,
+        color: isCost ? "#1A0000" : "#F0F9FF",
+        boxShadow: isCost
+          ? "0 0 14px rgba(255,215,0,0.65)"
+          : "0 0 14px rgba(56,189,248,0.55)",
+        border: "2px solid rgba(255,255,255,0.3)",
+        zIndex: 2,
+      }}
+      aria-label={isCost ? `Стоимость ${value}` : `Скорость ${value}`}
+    >
+      {isCost ? (
+        value
+      ) : (
+        <span style={{ display: "flex", alignItems: "center", gap: 1 }}>
+          <Gauge size={12} strokeWidth={2.5} />
+          {value}
+        </span>
+      )}
+    </div>
+  );
+}
+
 function CardPreview3D({ card }: { card: AbilityCard }) {
   const rarity = DECK_RARITY_CONFIG[card.rarity];
   const artUrl = getCardArtUrl(card.id, card.rarity);
@@ -109,22 +157,30 @@ function CardPreview3D({ card }: { card: AbilityCard }) {
         boxShadow: `0 24px 60px rgba(0,0,0,0.8), 0 0 30px ${rarity.color}44`,
         border: `2px solid ${rarity.color}`,
         background: COLORS.bg_card,
+        display: "flex",
+        flexDirection: "column",
       }}
     >
-      <div style={{ height: 200, position: "relative", background: "#0a0a12" }}>
+      {/* Art fills ≥85% of preview body */}
+      <div
+        style={{
+          flex: "1 1 auto",
+          minHeight: 0,
+          height: "85%",
+          position: "relative",
+          background: "#0a0a12",
+        }}
+      >
         {use3d ? (
           <Suspense
             fallback={<CardArtFallback card={card} rarityColor={rarity.color} />}
           >
             <Canvas
-              camera={{ position: [0, 0, 2.5] }}
+              camera={{ position: [0, 0, 3.2], fov: 42 }}
               style={{ width: "100%", height: "100%" }}
-              onCreated={() => {
-                /* texture load errors handled below via timeout fallback */
-              }}
               onError={() => setUse3d(false)}
             >
-              <ambientLight intensity={0.6} />
+              <ambientLight intensity={0.65} />
               <pointLight
                 position={[2, 2, 2]}
                 intensity={1.5}
@@ -136,89 +192,41 @@ function CardPreview3D({ card }: { card: AbilityCard }) {
         ) : (
           <CardArtFallback card={card} rarityColor={rarity.color} />
         )}
-        <div
-          style={{
-            position: "absolute",
-            top: 12,
-            left: 12,
-            width: 40,
-            height: 40,
-            borderRadius: "50%",
-            background: "radial-gradient(circle at 35% 35%, #FFE566, #CC8800)",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            font: `900 22px ${TYPOGRAPHY.ui}`,
-            color: "#1A0000",
-            boxShadow: "0 0 16px rgba(255,215,0,0.7)",
-            border: "2px solid rgba(255,255,255,0.3)",
-            zIndex: 2,
-          }}
-        >
-          {card.cost}
-        </div>
+        <Gem value={card.cost} side="left" icon="cost" />
+        <Gem value={card.speed} side="right" icon="speed" />
       </div>
 
-      <div style={{ padding: "12px 16px 14px" }}>
+      <div style={{ padding: "8px 12px 10px", flexShrink: 0 }}>
         <div
           style={{
-            height: 1,
-            background: `linear-gradient(90deg, transparent, ${rarity.color}, transparent)`,
-            marginBottom: 10,
-          }}
-        />
-        <div
-          style={{
-            font: `700 16px ${TYPOGRAPHY.display}`,
+            font: `700 14px ${TYPOGRAPHY.display}`,
             color: COLORS.text_primary,
             textShadow: `0 0 10px ${rarity.color}66`,
-            marginBottom: 8,
+            marginBottom: 6,
+            whiteSpace: "nowrap",
+            overflow: "hidden",
+            textOverflow: "ellipsis",
           }}
         >
           {card.name}
         </div>
-        <div style={{ display: "flex", gap: 6, marginBottom: 10 }}>
+        <div style={{ display: "flex", gap: 6, marginBottom: 6 }}>
           <Tag color={rarity.color} label={rarity.label} />
           <Tag color={TYPE_COLOR[card.type]} label={TYPE_LABEL[card.type]} />
         </div>
         <div
           style={{
-            font: `400 13px ${TYPOGRAPHY.body}`,
+            font: `400 12px ${TYPOGRAPHY.body}`,
             color: COLORS.text_secondary,
-            lineHeight: 1.55,
+            lineHeight: 1.4,
+            display: "-webkit-box",
+            WebkitLineClamp: 2,
+            WebkitBoxOrient: "vertical",
+            overflow: "hidden",
           }}
         >
           {card.description}
         </div>
-        <div
-          style={{
-            marginTop: 10,
-            display: "flex",
-            alignItems: "center",
-            gap: 6,
-            font: `600 12px ${TYPOGRAPHY.ui}`,
-            color: COLORS.text_secondary,
-          }}
-        >
-          <Zap size={13} color="#FFD700" />
-          <span>
-            Скорость: <span style={{ color: "#FFD700" }}>{card.speed}</span>
-          </span>
-        </div>
-        {card.flavorText && (
-          <div
-            style={{
-              marginTop: 10,
-              font: `italic 400 12px ${TYPOGRAPHY.body}`,
-              color: COLORS.text_secondary,
-              opacity: 0.7,
-              borderTop: "1px solid rgba(255,255,255,0.06)",
-              paddingTop: 8,
-            }}
-          >
-            &ldquo;{card.flavorText}&rdquo;
-          </div>
-        )}
       </div>
     </div>
   );

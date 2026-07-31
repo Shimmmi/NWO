@@ -4,7 +4,7 @@ import Image from "next/image";
 import { motion, useReducedMotion } from "framer-motion";
 import { getAllCharacters } from "@/lib/data";
 import { COLORS, getCharacterColor } from "@/lib/design/tokens";
-import { getCharacterPortraitUrl } from "@/lib/game/art";
+import { getCountryFlagUrl } from "@/lib/game/art";
 
 export interface CharacterCarouselProps {
   selectedId: string;
@@ -53,10 +53,10 @@ export function CharacterCarousel({
                 boxShadow: active ? `0 0 24px ${accent}55` : "none",
               }}
             >
-              <span className="relative h-14 w-14 overflow-hidden rounded-lg">
+              <span className="relative h-9 w-14 overflow-hidden rounded-md border border-white/15">
                 <Image
-                  src={getCharacterPortraitUrl(character.id, 1)}
-                  alt={character.name}
+                  src={getCountryFlagUrl(character.id)}
+                  alt={character.country}
                   fill
                   sizes="56px"
                   className="object-cover"

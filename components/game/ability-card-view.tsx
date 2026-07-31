@@ -17,12 +17,6 @@ import { cn } from "@/lib/utils";
 
 type CardVariant = "compact" | "hand" | "editor";
 
-const TYPE_ICON: Record<AbilityCard["type"], string> = {
-  active: "⚔️",
-  passive: "🛡️",
-  ultimate: "✨",
-};
-
 const RARITY_CONFIG: Record<
   AbilityCard["rarity"],
   { color: string; glow: string; border: string }
@@ -260,16 +254,27 @@ function HandCard({
               : "none",
           color: canPlay && !disabled ? "#1A0000" : "#888",
         }}
+        aria-label={`Стоимость ${card.cost}`}
       >
         {card.cost}
       </div>
 
       <div
-        className="absolute right-2 top-2 z-10 text-lg"
-        style={{ filter: "drop-shadow(0 2px 4px rgba(0,0,0,0.8))" }}
-        aria-hidden
+        className="absolute right-2 top-2 z-10 flex h-9 min-w-9 items-center justify-center gap-0.5 rounded-full border-2 border-white/20 px-1.5 font-ui text-sm font-bold"
+        style={{
+          background: canPlay && !disabled
+            ? "radial-gradient(circle at 35% 35%, #7DD3FC, #0369A1)"
+            : "radial-gradient(circle, #555, #333)",
+          boxShadow:
+            canPlay && !disabled
+              ? "0 0 12px rgba(56,189,248,0.5)"
+              : "none",
+          color: canPlay && !disabled ? "#F0F9FF" : "#888",
+        }}
+        aria-label={`Скорость ${card.speed}`}
       >
-        {TYPE_ICON[card.type]}
+        <Gauge className="h-3.5 w-3.5" strokeWidth={2.5} />
+        {card.speed}
       </div>
 
       <div className="relative mx-2 mt-2 h-[58%] overflow-hidden rounded-lg border border-white/10">

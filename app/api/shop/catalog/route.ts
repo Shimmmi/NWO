@@ -22,10 +22,13 @@ export async function GET() {
   }
 
   const n = normalizeUser(user);
+  const today = new Date().toISOString().slice(0, 10);
+  const dailyAvailable = n.lastDailyGrantAt !== today;
   return NextResponse.json({
     skus: BOOSTER_CATALOG,
     credits: n.credits,
     pity: n.legendaryPity,
+    dailyAvailable,
     user: toUserPublic(n),
   });
 }

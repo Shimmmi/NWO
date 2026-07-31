@@ -10,33 +10,52 @@ import type { FilteredCard } from "@/lib/game/deckTypes";
 import type { AbilityCard } from "@/lib/game/types";
 import { useDeckBuilderStore } from "@/lib/stores/deckBuilderStore";
 
+/** inDeck = filled; owned but not in deck = ring; unowned = dim outline */
 function CopyDots({
-  current,
+  inDeck,
+  owned,
   max,
   color,
 }: {
-  current: number;
+  inDeck: number;
+  owned: number;
   max: number;
   color: string;
 }) {
+  const title = `В колоде ${inDeck} / Есть ${owned} / Лимит ${max}`;
   return (
-    <div style={{ display: "flex", gap: 3 }}>
-      {Array.from({ length: max }).map((_, i) => (
-        <motion.div
-          key={i}
-          animate={{
-            background: i < current ? color : "rgba(255,255,255,0.15)",
-            scale: i < current && i === current - 1 ? [1, 1.4, 1] : 1,
-          }}
-          transition={{ duration: 0.25 }}
-          style={{
-            width: 7,
-            height: 7,
-            borderRadius: "50%",
-            boxShadow: i < current ? `0 0 4px ${color}` : "none",
-          }}
-        />
-      ))}
+    <div style={{ display: "flex", gap: 3 }} title={title} aria-label={title}>
+      {Array.from({ length: max }).map((_, i) => {
+        const filled = i < inDeck;
+        const ownedEmpty = !filled && i < owned;
+        return (
+          <motion.div
+            key={i}
+            animate={{
+              background: filled
+                ? color
+                : ownedEmpty
+                  ? `${color}55`
+                  : "transparent",
+              scale: filled && i === inDeck - 1 ? [1, 1.35, 1] : 1,
+            }}
+            transition={{ duration: 0.25 }}
+            style={{
+              width: 7,
+              height: 7,
+              borderRadius: "50%",
+              border: filled
+                ? "none"
+                : ownedEmpty
+                  ? `1.5px solid ${color}`
+                  : "1.5px solid rgba(255,255,255,0.18)",
+              opacity: filled || ownedEmpty ? 1 : 0.35,
+              boxShadow: filled ? `0 0 4px ${color}` : "none",
+              boxSizing: "border-box",
+            }}
+          />
+        );
+      })}
     </div>
   );
 }
@@ -220,7 +239,8 @@ function CollectionCardItem({
           }}
         >
           <CopyDots
-            current={countInDeck}
+            inDeck={countInDeck}
+            owned={ownedCount}
             max={maxCopies}
             color={rarity.color}
           />
